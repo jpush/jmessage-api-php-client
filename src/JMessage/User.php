@@ -60,6 +60,8 @@ class User {
         return $response;
     }
 
+    ############## BlackList
+
     public function addBlacklist($user, array $usernames) {
         $uri = self::BASE_URI . $user . '/blacklist';
         $body = $usernames;
@@ -74,9 +76,42 @@ class User {
         return $response;
     }
 
-    public function blacklists($username) {
-        $uri = self::BASE_URI . $username . '/blacklist';
+    public function blacklists($user) {
+        $uri = self::BASE_URI . $user . '/blacklist';
         $response = $this->client->get($uri);
+        return $response;
+    }
+
+    ############## NoDisturb
+
+    public function addSingleNodisturb($user, array $usernames) {
+        $single = [ 'add' => $usernames ];
+        return $this->nodisturb($user, [ 'single' => $single ]);
+    }
+
+    public function removeSingleNodisturb($user, array $usernames) {
+        $single = [ 'remove' => $usernames ];
+        return $this->nodisturb($user, [ 'single' => $single ]);
+    }
+
+    public function addGroupNodisturb($user, array $groups) {
+        $group = [ 'add' => $groups ];
+        return $this->nodisturb($user, [ 'group' => $group ]);
+    }
+
+    public function removeGroupNodisturb($user, array $groups) {
+        $group = [ 'remove' => $groups ];
+        return $this->nodisturb($user, [ 'group' => $group ]);
+    }
+
+    public function setGlobalNodisturb($user, bool $opened) {
+        return $this->nodisturb($user, [ 'global' => $opened ]);
+    }
+
+    private function nodisturb($user, array $options) {
+        $uri = self::BASE_URI . $user . '/nodisturb';
+        $body = $options;
+        $response = $this->client->post($uri, $body);
         return $response;
     }
 }
