@@ -60,4 +60,23 @@ class User {
         return $response;
     }
 
+    public function addBlacklist($user, array $usernames) {
+        $uri = self::BASE_URI . $user . '/blacklist';
+        $body = $usernames;
+        $response = $this->client->put($uri, $body);
+        return $response;
+    }
+
+    public function removeBlacklist($user, array $usernames) {
+        $uri = self::BASE_URI . $user . '/blacklist';
+        $body = $usernames;
+        $response = $this->client->delete($uri, $body);
+        return $response;
+    }
+
+    public function blacklists($username) {
+        $uri = self::BASE_URI . $username . '/blacklist';
+        $response = $this->client->get($uri);
+        return $response;
+    }
 }

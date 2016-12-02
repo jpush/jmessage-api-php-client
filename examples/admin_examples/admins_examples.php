@@ -8,4 +8,3 @@ $admin = new Admin($jm);
 
 $response = $admin->getAdmins();
 print_r($response);
-

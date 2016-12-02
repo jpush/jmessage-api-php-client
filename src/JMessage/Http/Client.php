@@ -20,11 +20,8 @@ class Client {
         return self::request($this->client, 'PUT', $uri, $body);
     }
 
-    public function delete($uri, array $query = []) {
-        if (!empty($query)) {
-            $uri = $uri . '?' . http_build_query($query);
-        }
-        return self::request($this->client, 'DELETE', $uri);
+    public function delete($uri, array $body) {
+        return self::request($this->client, 'DELETE', $uri, $body);
     }
 
     public static function getInstance($client) {

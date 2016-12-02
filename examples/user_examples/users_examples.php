@@ -33,7 +33,7 @@ print_r($response);
 echo "\n";
 
 // echo "delete user: \n";
-// $response = $user->deleteUser('user_100');
+// $response = $user->deleteUser('user_10');
 // print_r($response);
 // echo "\n";
 
