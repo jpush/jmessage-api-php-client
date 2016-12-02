@@ -16,6 +16,17 @@ class Client {
         return self::request($this->client, 'POST', $uri, $body);
     }
 
+    public function put($uri, array $body = []) {
+        return self::request($this->client, 'PUT', $uri, $body);
+    }
+
+    public function delete($uri, array $query = []) {
+        if (!empty($query)) {
+            $uri = $uri . '?' . http_build_query($query);
+        }
+        return self::request($this->client, 'DELETE', $uri);
+    }
+
     public static function getInstance($client) {
         if (is_null(self::$_instance) || !(self::$_instance instanceof self)) {
             self::$_instance = new self($client);
