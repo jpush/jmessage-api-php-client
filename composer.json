@@ -1,0 +1,22 @@
+{
+    "name": "jiguang/jmessage-api-php-client",
+    "type": "library",
+    "description": "JMessage's officially supported PHP client library for accessing JMessage APIs.",
+    "keywords": ["jiguang", "jmessage", "API Client"],
+    "homepage": "https://github.com/jpush/jmessage-api-php-client",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "JiGuang",
+            "email": "support@jpush.cn",
+            "homepage": "https://www.jiguang.cn"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.3",
+        "ext-curl": "*"
+    },
+    "autoload" : {
+        "psr-4": {"JMessage\\": "src/JMessage/"}
+    }
+}
