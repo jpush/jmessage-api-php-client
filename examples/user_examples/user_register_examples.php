@@ -2,7 +2,7 @@
 
 require __DIR__ . '/../config.php';
 
-use JMessage\User;
+use JMessage\IM\User;
 
 $user = new User($jm);
 

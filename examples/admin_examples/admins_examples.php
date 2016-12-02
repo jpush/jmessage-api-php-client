@@ -2,7 +2,7 @@
 
 require __DIR__ . '/../config.php';
 
-use JMessage\Admin;
+use JMessage\IM\Admin;
 
 $admin = new Admin($jm);
 

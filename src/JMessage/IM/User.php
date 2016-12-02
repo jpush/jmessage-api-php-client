@@ -1,6 +1,6 @@
 <?php
 
-namespace JMessage;
+namespace JMessage\IM;
 use JMessage\Http\Client;
 
 class User {
