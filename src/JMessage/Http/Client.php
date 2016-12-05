@@ -20,7 +20,7 @@ class Client {
         return self::request($this->client, 'PUT', $uri, $body);
     }
 
-    public function delete($uri, array $body) {
+    public function delete($uri, array $body = []) {
         return self::request($this->client, 'DELETE', $uri, $body);
     }
 
