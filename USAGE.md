@@ -172,3 +172,47 @@ $response = $user->delete($username);
 
 ## Admin 相关
 
+```php
+use JMessage\IM\Admin;
+
+$admin = new Admin($client);
+```
+
+#### 管理员注册
+
+```php
+$admin->register(array $info);
+```
+
+**参数：**
+
+> $info: 表示想要注册的管理员信息
+
+**示例：**
+
+```php
+$info = [
+    'username' => 'admin',
+    'password' => 'password'
+];
+$response = $admin->register($info);
+```
+
+#### 获取应用管理员列表
+
+```php
+$admin->list($start, $count);
+```
+
+**参数：**
+
+> $start: 起始记录位置 从 0 开始
+
+> $count: 查询条数 最多支持 500 条
+
+**示例：**
+
+```php
+# 获取从编号 2 开始的 10 个记录的管理员 admin 列表
+$response = $admin->list(2, 10);
+```

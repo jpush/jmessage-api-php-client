@@ -1,5 +1,4 @@
 <?php
-
 namespace JMessage\IM;
 use JMessage\Http\Client;
 
@@ -19,19 +18,13 @@ class Admin {
         return $response;
     }
 
-    public function getAdmins($start = 0, $count = 10) {
+    public function list($start = 0, $count = 10) {
         $uri = self::BASE_URI;
         $query = [
             'start' => $start,
             'count' => $count
         ];
         $response = $this->client->get($uri, $query);
-        return $response;
-    }
-
-    public function userStat($username) {
-        $uri = self::BASE_URI . $username . '/userstat';
-        $response = $this->client->get($uri);
         return $response;
     }
 }
