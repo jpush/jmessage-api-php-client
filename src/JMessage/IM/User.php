@@ -59,28 +59,6 @@ class User {
         return $response;
     }
 
-    ############## BlackList
-
-    public function addBlacklist($user, array $usernames) {
-        $uri = self::BASE_URI . $user . '/blacklist';
-        $body = $usernames;
-        $response = $this->client->put($uri, $body);
-        return $response;
-    }
-
-    public function removeBlacklist($user, array $usernames) {
-        $uri = self::BASE_URI . $user . '/blacklist';
-        $body = $usernames;
-        $response = $this->client->delete($uri, $body);
-        return $response;
-    }
-
-    public function blacklists($user) {
-        $uri = self::BASE_URI . $user . '/blacklist';
-        $response = $this->client->get($uri);
-        return $response;
-    }
-
     ############## NoDisturb
 
     public function addSingleNodisturb($user, array $usernames) {

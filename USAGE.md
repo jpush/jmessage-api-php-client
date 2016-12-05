@@ -11,7 +11,7 @@ $masterSecret = 'xxxx';
 $client = new JMessage($appKey, $masterSecret);
 ```
 
-## 用户相关
+## User 用户
 
 ```php
 use JMessage\IM\User;
@@ -170,7 +170,7 @@ $username = 'jiguang';
 $response = $user->delete($username);
 ```
 
-## Admin 相关
+## Admin 管理员
 
 ```php
 use JMessage\IM\Admin;
@@ -215,4 +215,73 @@ $admin->list($start, $count);
 ```php
 # 获取从编号 2 开始的 10 个记录的管理员 admin 列表
 $response = $admin->list(2, 10);
+```
+
+## Blacklist 黑名单
+
+```php
+use JMessage\IM\Blacklist;
+
+$blacklist = new Blacklist($client);
+```
+
+#### 黑名单列表
+
+```php
+$blacklist->list($user);
+```
+
+**参数：**
+
+> $user：表示当前用户
+
+**示例：**
+
+```php
+# 获取当前用户 'jiguang' 的黑名单列表
+$user = 'jiguang';
+$response = $blacklist->list($user);
+```
+
+#### 添加黑名单
+
+```php
+$blacklist->add($user, array $usernames);
+```
+
+**参数：**
+
+> $user：表示当前用户
+
+> $usernames：表示要加入到当前用户黑名单中的用户名数组
+
+**示例：**
+
+```php
+# 把用户 'username0' 和 'username1' 添加到 'jiguang' 的黑名单中
+$user = 'jiguang';
+$username = ['username0', 'username1'];
+
+$response = $blacklist->add($user. $username);
+```
+
+#### 移除黑名单
+
+```php
+$blacklist->remove($user, array $usernames);
+```
+**参数：**
+
+> $user：表示当前用户
+
+> $usernames：表示要从当前用户的黑名单中移除的用户名数组
+
+**示例：**
+
+```php
+# 把用户 'username0' 和 'username1' 从 'jiguang' 的黑名单中移除
+$user = 'jiguang';
+$username = ['username0', 'username1'];
+
+$response = $blacklist->remove($user， $username);
 ```

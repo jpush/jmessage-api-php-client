@@ -1,28 +1,26 @@
 <?php
-
 require __DIR__ . '/../config.php';
+use JMessage\IM\Blacklist;
 
-use JMessage\IM\User;
-
-$user = new User($jm);
-$username = 'user_0';
+$blacklist = new Blacklist($jm);
+$user = 'user_0';
 
 echo "add blacklist: \n";
-$response = $user->addBlacklist($username, ['user_1']);
+$response = $blacklist->add($user, ['user_1']);
 print_r($response);
 echo "\n";
 
 echo "get blacklists: \n";
-$response = $user->blacklists($username);
+$response = $blacklist->list($user);
 print_r($response);
 echo "\n";
 
 echo "remove blacklist: \n";
-$response = $user->removeBlacklist($username, ['user_1']);
+$response = $blacklist->remove($user, ['user_1']);
 print_r($response);
 echo "\n";
 
 echo "get blacklists: \n";
-$response = $user->blacklists($username);
+$response = $blacklist->list($user);
 print_r($response);
 echo "\n";
