@@ -1,5 +1,4 @@
 <?php
-
 namespace JMessage\IM;
 use JMessage\Http\Client;
 
@@ -19,38 +18,38 @@ class User {
         return $response;
     }
 
-    public function getUser($username) {
+    public function show($username) {
         $uri = self::BASE_URI . $username;
         $response = $this->client->get($uri);
         return $response;
     }
 
-    public function updateUser($username, array $options) {
+    public function update($username, array $options) {
         $uri = self::BASE_URI . $username;
         $body = $options;
         $response = $this->client->put($uri, $body);
         return $response;
     }
 
-    public function userStat($username) {
+    public function stat($username) {
         $uri = self::BASE_URI . $username . '/userstat';
         $response = $this->client->get($uri);
         return $response;
     }
 
-    public function changePassword($username, $password) {
+    public function updatePassword($username, $password) {
         $uri = self::BASE_URI . $username . '/password';
         $response = $this->client->put($uri, [ 'new_password' => $password ]);
         return $response;
     }
 
-    public function deleteUser($username) {
+    public function delete($username) {
         $uri = self::BASE_URI . $username;
         $response = $this->client->delete($uri);
         return $response;
     }
 
-    public function getUsers($start = 0, $count = 10) {
+    public function list($start = 0, $count = 10) {
         $uri = self::BASE_URI;
         $query = [
             'start' => $start,

@@ -8,32 +8,32 @@ $user = new User($jm);
 $username = 'user_0';
 
 echo "get users list: \n";
-$response = $user->getUsers();
+$response = $user->list(0, 100);
 print_r($response);
 echo "\n";
 
 echo "get user info: \n";
-$response = $user->getUser($username);
+$response = $user->show($username);
 print_r($response);
 echo "\n";
 
 echo "update user info: \n";
-$response = $user->updateUser($username, ['nickname' => 'user_nickname_0']);
+$response = $user->update($username, ['nickname' => 'user_nickname_0', 'gender' => 2]);
 print_r($response);
 echo "\n";
 
 echo "get user stat: \n";
-$response = $user->userStat($username);
+$response = $user->stat($username);
 print_r($response);
 echo "\n";
 
 echo "change user password: \n";
-$response = $user->changePassword($username, 'password_0');
+$response = $user->updatePassword($username, 'password_0');
 print_r($response);
 echo "\n";
 
 // echo "delete user: \n";
-// $response = $user->deleteUser('user_10');
+// $response = $user->delete('user_10');
 // print_r($response);
 // echo "\n";
 

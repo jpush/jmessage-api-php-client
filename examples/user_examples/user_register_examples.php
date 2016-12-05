@@ -1,7 +1,5 @@
 <?php
-
 require __DIR__ . '/../config.php';
-
 use JMessage\IM\User;
 
 $user = new User($jm);
