@@ -19,7 +19,7 @@ use JMessage\IM\User;
 $user = new User($client);
 ```
 
-#### 注册用户
+### 注册用户
 
 批量注册用户到极光 IM 服务器，一次批量注册最多支持 500 个用户。
 
@@ -44,7 +44,7 @@ $users = [
 $response = $user->register($users);
 ```
 
-#### 获取用户列表
+### 获取用户列表
 
 ```php
 $user->list($start, $count);
@@ -63,7 +63,7 @@ $user->list($start, $count);
 $response = $user->list(2, 100);
 ```
 
-#### 获取用户信息
+### 获取用户信息
 
 ```php
 $user->show($username);
@@ -80,7 +80,7 @@ $username = 'jiguang';
 $response = $user->show($username);
 ```
 
-#### 更新用户信息
+### 更新用户信息
 
 ```php
 $user->update($username, array $options);
@@ -113,7 +113,7 @@ $nickname = 'jpush';
 $response = $user->update($username, ['nickname' => $nickname， 'gender' => 2]);
 ```
 
-#### 查询用户在线状态
+### 查询用户在线状态
 
 ```php
 $user->stat($username)
@@ -130,7 +130,7 @@ $username = 'jiguang';
 $response = $user->stat($username);
 ```
 
-#### 修改密码
+### 修改密码
 
 ```php
 $user->updatePassword($username, $password);
@@ -151,7 +151,7 @@ $new_password = 'newpassword';
 $response = $user->updatePassword($username, $new_password);
 ```
 
-#### 删除用户
+### 删除用户
 
 ```php
 $user->delete($username);
@@ -170,7 +170,7 @@ $username = 'jiguang';
 $response = $user->delete($username);
 ```
 
-#### 获取用户的群组列表
+### 获取用户的群组列表
 
 ```php
 $user->groups($username);
@@ -189,7 +189,7 @@ $username = 'jiguang';
 $response = $user->groups($username);
 ```
 
-#### 添加单聊免打扰
+### 添加单聊免打扰
 
 ```php
 $user->addSingleNodisturb($touser, array $usernames);
@@ -212,7 +212,7 @@ $usernames = ['username0', 'username1'];
 $response = $user->addSingleNodisturb($touser, $usernames);
 ```
 
-#### 移除单聊免打扰
+### 移除单聊免打扰
 
 ```php
 $user->removeSingleNodisturb($touser, array $usernames);
@@ -235,7 +235,7 @@ $usernames = ['username0', 'username1'];
 $response = $user->removeSingleNodisturb($touser, $usernames);
 ```
 
-#### 添加群聊免打扰
+### 添加群聊免打扰
 
 ```php
 $user->addGroupNodisturb($touser, array $gids);
@@ -255,7 +255,7 @@ $touser = 'jiguang';
 $response = $user->addGroupNodisturb($touser, $gids);
 ```
 
-#### 移除群聊免打扰
+### 移除群聊免打扰
 
 ```php
 $user->removeGroupNodisturb($touser, array $gids);
@@ -275,7 +275,7 @@ $touser = 'jiguang';
 $response = $user->addGroupNodisturb($touser, $gids);
 ```
 
-#### 开启全局免打扰
+### 开启全局免打扰
 
 ```php
 $user->openGlobalNodisturb($touser);
@@ -293,7 +293,7 @@ $touser = 'jiguang';
 $response = $user->openGlobalNodisturb($touser);
 ```
 
-#### 关闭全局免打扰
+### 关闭全局免打扰
 
 ```php
 $user->closeGlobalNodisturb($touser);
@@ -311,7 +311,7 @@ $touser = 'jiguang';
 $response = $user->closeGlobalNodisturb($touser);
 ```
 
-#### 自定义免打扰
+### 自定义免打扰
 
 > 自定义免打扰的设置参数比较复杂，建议使用上面所述的 6 个方法设置免打扰
 
@@ -337,11 +337,11 @@ $username = 'jiguang';
 $options = [
     "single" => [
         "add"    => [$user0, $user1],
-        "remove" => [$user2, $user3],
+        "remove" => [$user2, $user3]
     ],
     "group" => [
         "add"    => [$gid0, $gid1],
-        "remove" => [$gid2, $gid3],
+        "remove" => [$gid2, $gid3]
     ],
     "global" => 0
 ];
@@ -357,7 +357,7 @@ use JMessage\IM\Admin;
 $admin = new Admin($client);
 ```
 
-#### 管理员注册
+### 管理员注册
 
 ```php
 $admin->register(array $info);
@@ -377,7 +377,7 @@ $info = [
 $response = $admin->register($info);
 ```
 
-#### 获取应用管理员列表
+### 获取应用管理员列表
 
 ```php
 $admin->list($start, $count);
@@ -404,7 +404,7 @@ use JMessage\IM\Blacklist;
 $blacklist = new Blacklist($client);
 ```
 
-#### 黑名单列表
+### 黑名单列表
 
 ```php
 $blacklist->list($user);
@@ -422,7 +422,7 @@ $user = 'jiguang';
 $response = $blacklist->list($user);
 ```
 
-#### 添加黑名单
+### 添加黑名单
 
 ```php
 $blacklist->add($user, array $usernames);
@@ -444,7 +444,7 @@ $username = ['username0', 'username1'];
 $response = $blacklist->add($user. $username);
 ```
 
-#### 移除黑名单
+### 移除黑名单
 
 ```php
 $blacklist->remove($user, array $usernames);
@@ -473,7 +473,7 @@ use JMessage\IM\Group;
 $group = new Group($client);
 ```
 
-#### 创建群组
+### 创建群组
 
 ```php
 $group->create($owner, $name, $desc, array $members = [])
@@ -502,7 +502,7 @@ $desc 'jiguang group for developer';
 $response = $group->create($owner, $name, $desc, $members);
 ```
 
-#### 获取群组详情
+### 获取群组详情
 
 ```php
 $group->show($gid);
@@ -521,7 +521,7 @@ $gid = 12345;
 $response = $group->show($gid);
 ```
 
-#### 更新群组信息（群名 or 群描述）
+### 更新群组信息（群名 or 群描述）
 
 ```php
 $group->update($gid, $name, $desc)
@@ -552,7 +552,7 @@ $response = $group->update($gid, null, $desc);
 $response = $group->update($gid, $name, $desc);
 ```
 
-#### 删除群组
+### 删除群组
 
 ```php
 $group->delete($gid);
@@ -571,9 +571,9 @@ $gid = 12345;
 $response = $group->delete($gid);
 ```
 
-#### 更新群组成员
+### 更新群组成员
 
-##### 添加群组成员
+#### 添加群组成员
 
 ```php
 $response = $group->addMembers($gid, array $usernames);
@@ -595,7 +595,7 @@ $usernames = ['username0', 'username1'];
 $response = $group->addMembers($gid, $usernames);
 ```
 
-##### 移除群组成员
+#### 移除群组成员
 
 ```php
 $group->removeMembers($gid, array $usernames);
@@ -618,7 +618,7 @@ $usernames = ['username0', 'username1'];
 $response = $group->removeMembers($gid, $usernames);
 ```
 
-##### 更新群组成员
+#### 更新群组成员
 
 > 建议使用上面所述的 2 个方法分别添加和移除群组成员。
 
@@ -644,7 +644,7 @@ $remove = ['username2', 'username3'];
 $response = $group->updateMembers($gid, [ 'add' => $add, 'remove' => $remove ]);
 ```
 
-#### 获取群组成员列表
+### 获取群组成员列表
 
 ```php
 $group->members($gid);
