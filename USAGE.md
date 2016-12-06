@@ -29,7 +29,7 @@ $user->register(array $users);
 
 **参数：**
 
-> $users: 表示将要注册的用户的信息的数组。
+> $users: 表示将要注册的用户的信息的数组
 
 **示例：**
 
@@ -77,7 +77,7 @@ $user->show($username);
 
 ```php
 $username = 'jiguang';
-$response =  $user->show($username);
+$response = $user->show($username);
 ```
 
 #### 更新用户信息
@@ -88,9 +88,9 @@ $user->update($username, array $options);
 
 **参数：**
 
-> $username: 表示想要更新其信息的用户的用户名。
+> $username: 表示想要更新其信息的用户的用户名
 
-> $options: 更新选项数组，表示需要更新的用户信息和值。支持 **nickname**、**avatar**、**birthday**、**signature**、**gender**、**region**、**address** 中的一个或多个。
+> $options: 更新选项数组，表示需要更新的用户信息和值。支持 **nickname**、**avatar**、**birthday**、**signature**、**gender**、**region**、**address** 中的一个或多个
 
 | 参数 | 意义 | 说明 |
 | -- | -- | -- |
@@ -121,7 +121,7 @@ $user->stat($username)
 
 **参数：**
 
-> $username: 表示想要查询在线状态的用户的用户名。
+> $username: 表示想要查询在线状态的用户的用户名
 
 **示例：**
 
@@ -168,6 +168,160 @@ $user->delete($username);
 
 $username = 'jiguang';
 $response = $user->delete($username);
+```
+
+#### 添加单聊免打扰
+
+```php
+$user->addSingleNodisturb($touser, array $usernames);
+```
+
+**参数：**
+
+> $touser: 表示要设置免打扰的当前用户
+
+> $usernames: 表示要被添加单聊免打扰的用户名数组
+
+**示例：**
+
+```php
+# 用户 'jiguang' 添加对用户 'username0' 和 'username1' 的单聊免打扰
+
+$touser = 'jiguang';
+$usernames = ['username0', 'username1'];
+
+$response = $user->addSingleNodisturb($touser, $usernames);
+```
+
+#### 移除单聊免打扰
+
+```php
+$user->removeSingleNodisturb($touser, array $usernames);
+```
+
+**参数：**
+
+> $touser: 表示要设置免打扰的当前用户
+
+> $usernames: 表示要被移除单聊免打扰的用户名数组
+
+**示例：**
+
+```php
+# 用户 'jiguang' 移除对用户 'username0' 和 'username1' 的单聊免打扰
+
+$touser = 'jiguang';
+$usernames = ['username0', 'username1'];
+
+$response = $user->removeSingleNodisturb($touser, $usernames);
+```
+
+#### 添加群聊免打扰
+
+```php
+$user->addGroupNodisturb($touser, array $gids);
+```
+
+**参数：**
+
+> $touser: 表示要被设置免打扰的当前用户
+
+> $gids: 表示要被添加群聊免打扰的群组的 gid 数组
+
+**示例：**
+
+```php
+# TODO
+$touser = 'jiguang';
+$response = $user->addGroupNodisturb($touser, $gids);
+```
+
+#### 移除群聊免打扰
+
+```php
+$user->removeGroupNodisturb($touser, array $gids);
+```
+
+**参数：**
+
+> $touser: 表示要设置免打扰的当前用户
+
+> $gids: 表示要被移除群聊免打扰的群组的 gid 数组
+
+**示例：**
+
+```php
+# TODO
+$touser = 'jiguang';
+$response = $user->addGroupNodisturb($touser, $gids);
+```
+
+#### 开启全局免打扰
+
+```php
+$user->openGlobalNodisturb($touser);
+```
+
+**参数：**
+
+> $touser: 表示要开启全局免打扰的用户
+
+**示例：**
+
+```php
+# 用户 'jiguang' 开启全局免打扰
+$touser = 'jiguang';
+$response = $user->openGlobalNodisturb($touser);
+```
+
+#### 关闭全局免打扰
+
+```php
+$user->closeGlobalNodisturb($touser);
+```
+
+**参数：**
+
+> $touser: 表示要关闭全局免打扰的用户
+
+**示例：**
+
+```php
+# 用户 'jiguang' 关闭全局免打扰
+$touser = 'jiguang';
+$response = $user->closeGlobalNodisturb($touser);
+```
+
+#### 自定义免打扰
+
+> 自定义免打扰的设置比较复杂，建议使用上面所述的 6 种方式设置免打扰。
+
+```php
+$user->nodisturb($touser, array $options);
+```
+
+**参数：**
+
+> $touser: 表示要设置自定义免打扰的用户
+
+> $options: 自定义免打扰设置项数组
+
+**示例：**
+
+```php
+$username = 'jiguang';
+$options = [
+    "single" => [
+        "add" => [],
+        "remove" => [],
+    ],
+    "group" => [
+        "add" => [],
+        "remove" => [],
+    ],
+];
+
+$response = $user->nodisturb($touser, $options);
 ```
 
 ## Admin 管理员

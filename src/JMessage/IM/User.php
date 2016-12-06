@@ -61,32 +61,40 @@ class User {
 
     ############## NoDisturb
 
-    public function addSingleNodisturb($user, array $usernames) {
+    public function addSingleNodisturb($touser, array $usernames) {
         $single = [ 'add' => $usernames ];
-        return $this->nodisturb($user, [ 'single' => $single ]);
+        return $this->nodisturb($touser, [ 'single' => $single ]);
     }
 
-    public function removeSingleNodisturb($user, array $usernames) {
+    public function removeSingleNodisturb($touser, array $usernames) {
         $single = [ 'remove' => $usernames ];
-        return $this->nodisturb($user, [ 'single' => $single ]);
+        return $this->nodisturb($touser, [ 'single' => $single ]);
     }
 
-    public function addGroupNodisturb($user, array $groups) {
-        $group = [ 'add' => $groups ];
-        return $this->nodisturb($user, [ 'group' => $group ]);
+    public function addGroupNodisturb($touser, array $gids) {
+        $group = [ 'add' => $gids ];
+        return $this->nodisturb($touser, [ 'group' => $group ]);
     }
 
-    public function removeGroupNodisturb($user, array $groups) {
-        $group = [ 'remove' => $groups ];
-        return $this->nodisturb($user, [ 'group' => $group ]);
+    public function removeGroupNodisturb($touser, array $gids) {
+        $group = [ 'remove' => $gids ];
+        return $this->nodisturb($touser, [ 'group' => $group ]);
     }
 
-    public function setGlobalNodisturb($user, bool $opened) {
-        return $this->nodisturb($user, [ 'global' => $opened ]);
+    // public function setGlobalNodisturb($touser, bool $opened) {
+    //     return $this->nodisturb($touser, [ 'global' => (int)$opened ]);
+    // }
+
+    public function openGlobalNodisturb($touser) {
+        return $this->nodisturb($touser, [ 'global' => 1 ]);
     }
 
-    private function nodisturb($user, array $options) {
-        $uri = self::BASE_URI . $user . '/nodisturb';
+    public function closeGlobalNodisturb($touser) {
+        return $this->nodisturb($touser, [ 'global' => 0 ]);
+    }
+
+    public function nodisturb($touser, array $options) {
+        $uri = self::BASE_URI . $touser . '/nodisturb';
         $body = $options;
         $response = $this->client->post($uri, $body);
         return $response;
