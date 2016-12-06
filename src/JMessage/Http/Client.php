@@ -70,7 +70,7 @@ class Client {
             $header_text = substr($output, 0, $header_size);
             $body = substr($output, $header_size);
 
-            $response['body'] = $body;
+            $response['body'] = json_decode($body, true);
             $response['http_code'] = $httpCode;
         }
         curl_close($ch);
