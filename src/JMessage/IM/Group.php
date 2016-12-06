@@ -17,41 +17,61 @@ class Group {
             'owner_username' => $owner,
             'name' => $name,
             'desc' => $desc,
-            'members_username' => $owner
+            'members_username' => $members
         ];
         $response = $this->client->post($uri, $body);
         return $response;
     }
 
-    public function show(gid) {
+    public function show($gid) {
         $uri = self::BASE_URI . $gid;
         $response = $this->client->get($uri);
         return $response;
     }
 
-
-    public function update(gid, $options) {
+    public function update($gid, $name = null, $desc = null) {
         $uri = self::BASE_URI . $gid;
 
-        $name = $options['name'];
-        $desc = $options['desc'];
+        $body = [];
+        if (!is_null($name)) { $body['name'] = $name; }
+        if (!is_null($desc)) { $body['desc'] = $desc; }
 
-        if name
-        $body = [
-            'name' => $name,
-            'desc' => $desc
+        $response = $this->client->put($uri, $body);
+        return $response;
+    }
+
+    public function delete($gid) {
+        $uri = self::BASE_URI . $gid;
+        $response = $this->client->delete($uri);
+        return $response;
+    }
+
+    public function list($start = 0, $count = 20) {
+        $uri = self::BASE_URI;
+        $query = [
+            'start' => $start,
+            'count' => $count
         ];
+        $response = $this->client->get($uri, $query);
+        return $response;
+    }
 
+    public function addMembers($gid, array $add) {
+        return $this->updateMembers($gid, [ 'add' => $add ]);
+    }
+    public function removeMembers($gid, array $remove) {
+        return $this->updateMembers($gid, [ 'remove' => $remove ]);
+    }
+    public function updateMembers($gid, array $options) {
+        $uri = self::BASE_URI . $gid . '/members';
+        $body = $options;
         $response = $this->client->post($uri, $body);
         return $response;
     }
 
-    public function delete(gid) {
-        $uri = self::BASE_URI . $gid;
-        $response = $this->client->delete($uri)
+    public function members($gid) {
+        $uri = self::BASE_URI . $gid . '/members';
+        $response = $this->client->get($uri);
         return $response;
     }
-
-
-
 }

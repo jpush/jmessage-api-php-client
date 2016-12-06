@@ -37,4 +37,7 @@ echo "\n";
 // print_r($response);
 // echo "\n";
 
-
+echo "get user's groups: \n";
+$response = $user->groups($username);
+print_r($response);
+echo "\n";

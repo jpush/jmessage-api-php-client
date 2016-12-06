@@ -170,6 +170,25 @@ $username = 'jiguang';
 $response = $user->delete($username);
 ```
 
+#### 获取用户的群组列表
+
+```php
+$user->groups($username);
+```
+
+**参数：**
+
+> $username: 表示想要获取其群组列表的用户
+
+**示例：**
+
+```php
+# 获取用户 'jiguang' 的群组列表
+
+$username = 'jiguang';
+$response = $user->groups($username);
+```
+
 #### 添加单聊免打扰
 
 ```php
@@ -294,7 +313,7 @@ $response = $user->closeGlobalNodisturb($touser);
 
 #### 自定义免打扰
 
-> 自定义免打扰的设置比较复杂，建议使用上面所述的 6 种方式设置免打扰。
+> 自定义免打扰的设置参数比较复杂，建议使用上面所述的 6 个方法设置免打扰
 
 ```php
 $user->nodisturb($touser, array $options);
@@ -309,16 +328,22 @@ $user->nodisturb($touser, array $options);
 **示例：**
 
 ```php
+# 自定义用户 'jiguang' 的免打扰设置
+# 添加用户 $user0 和 $user1 的单聊免打扰，移除用户 $user2 和 $user3 的单聊免打扰
+# 添加群组 $gid0 和 $gid1 的群聊免打扰，移除群组 $gid2 和 $gid3 的群聊免打扰
+# 关闭全局免打扰
+
 $username = 'jiguang';
 $options = [
     "single" => [
-        "add" => [],
-        "remove" => [],
+        "add"    => [$user0, $user1],
+        "remove" => [$user2, $user3],
     ],
     "group" => [
-        "add" => [],
-        "remove" => [],
+        "add"    => [$gid0, $gid1],
+        "remove" => [$gid2, $gid3],
     ],
+    "global" => 0
 ];
 
 $response = $user->nodisturb($touser, $options);
@@ -438,4 +463,203 @@ $user = 'jiguang';
 $username = ['username0', 'username1'];
 
 $response = $blacklist->remove($user， $username);
+```
+
+## Group 群组
+
+```php
+use JMessage\IM\Group;
+
+$group = new Group($client);
+```
+
+#### 创建群组
+
+```php
+$group->create($owner, $name, $desc, array $members = [])
+```
+
+**参数：**
+
+> $owner: 表示群主的用名
+
+> $name: 表示群组的名字
+
+> $desc: 表示群组描述
+
+> $members: 表示群组成员的用户名数组
+
+**示例：**
+
+```php
+# 创建一个群名为 'jiguang group' 群主为 'jiguang' 的群
+
+$owner = 'jiguang';
+$members = ['username0', 'username1'];
+$name = 'jiguang';
+$desc 'jiguang group for developer';
+
+$response = $group->create($owner, $name, $desc, $members);
+```
+
+#### 获取群组详情
+
+```php
+$group->show($gid);
+```
+
+**参数：**
+
+> $gid:  群组 ID, 由创建群组时分配
+
+**示例：**
+
+```php
+# 获取群组 ID 为 12345 的群组的详情
+
+$gid = 12345;
+$response = $group->show($gid);
+```
+
+#### 更新群组信息（群名 or 群描述）
+
+```php
+$group->update($gid, $name, $desc)
+```
+
+**参数：**
+
+> $gid: 群组 ID, 由创建群组时分配
+
+> $name: 新的群名
+
+> $desc: 新的群描述
+
+**示例：**
+
+```php
+$gid = 12345;
+$name = 'new name';
+$desc = 'new desc';
+
+# 只更新群组 ID 为 12345 的群组的群名
+$response = $group->update($gid, $name);
+
+# 只更新群组 ID 为 12345 的群组的群描述
+$response = $group->update($gid, null, $desc);
+
+# 更新群组 ID 为 12345 的群组的群名和群描述
+$response = $group->update($gid, $name, $desc);
+```
+
+#### 删除群组
+
+```php
+$group->delete($gid);
+```
+
+**参数：**
+
+> $gid: 群组 ID, 由创建群组时分配
+
+**示例：**
+
+```php
+# 删除群组 ID 为 12345 的群组
+
+$gid = 12345;
+$response = $group->delete($gid);
+```
+
+#### 更新群组成员
+
+##### 添加群组成员
+
+```php
+$response = $group->addMembers($gid, array $usernames);
+```
+
+**参数：**
+
+> $gid: 群组 ID, 由创建群组时分配
+
+> $usernames: 表示要添加到群组的用户数组
+
+**示例：**
+
+```php
+# 添加用户 'username0', 'username1' 到群组 ID 为 12345 的群组
+
+$gid = 12345;
+$usernames = ['username0', 'username1'];
+$response = $group->addMembers($gid, $usernames);
+```
+
+##### 移除群组成员
+
+```php
+$group->removeMembers($gid, array $usernames);
+```
+
+**参数：**
+
+> $gid: 群组 ID, 由创建群组时分配
+
+> $usernames: 表示要从群组中移除的用户数组
+
+**示例：**
+
+```php
+# 把用户 'username0', 'username1' 从群组 ID 为 12345 的群组中移除
+
+$gid = 12345;
+$usernames = ['username0', 'username1'];
+
+$response = $group->removeMembers($gid, $usernames);
+```
+
+##### 更新群组成员
+
+> 建议使用上面所述的 2 个方法分别添加和移除群组成员。
+
+```php
+$group->updateMembers($gid, array $options)
+```
+
+**参数：**
+
+> $gid: 群组 ID, 由创建群组时分配
+
+> $options: 表示更新群组选项
+
+**示例：**
+
+```php
+# 添加用户 'username0', 'username1' 到群组 ID 为 12345 的群组, 同时把用户 'username2', 'username3' 从群组 ID 为 12345 的群组中移除
+
+$gid = 12345;
+$add = ['username0', 'username1'];
+$remove = ['username2', 'username3'];
+
+$response = $group->updateMembers($gid, [ 'add' => $add, 'remove' => $remove ]);
+```
+
+#### 获取群组成员列表
+
+```php
+$group->members($gid);
+```
+
+**参数：**
+
+> $gid: 群组 ID, 由创建群组时分配
+
+**示例：**
+
+```php
+# 获取群组 ID 为 12345 的群组的成员列表
+
+$gid = 12345;
+
+$response = $group->members($gid);
 ```

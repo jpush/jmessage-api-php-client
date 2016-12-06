@@ -59,6 +59,12 @@ class User {
         return $response;
     }
 
+    public function groups($username) {
+        $uri = self::BASE_URI . $username . '/groups';
+        $response = $this->client->get($uri);
+        return $response;
+    }
+
     ############## NoDisturb
 
     public function addSingleNodisturb($touser, array $usernames) {
