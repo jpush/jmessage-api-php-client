@@ -1,5 +1,4 @@
 <?php
-
 namespace JMessage;
 
 class JMessage {
