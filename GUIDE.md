@@ -37,9 +37,9 @@
     * [添加好友](#添加好友)
     * [删除好友](#删除好友)
     * [更新好友备注](#更新好友备注)
-
-
-
+* [Resource 媒体文件](#resource-媒体文件)
+    * [资源上传](#资源上传)
+    * [资源下载](#资源下载)
 ## JMessage Client
 
 ```php
@@ -810,4 +810,54 @@ $options = [
 ];
 
 $response = $friend->updateNotename($user, $options);
+```
+
+## Resource 媒体资源
+
+```php
+use JMessage\IM\Resourse;
+
+$resource = new Resource($client);
+```
+
+### 资源上传
+
+```php
+$resource->upload($type, $path)
+```
+
+**参数：**
+
+> $type: 表示要上传的资源类型，仅支持 'image' 和 'file' 两种资源
+
+> $path: 表示要上传的资源的全路径
+
+**示例：**
+
+```php
+$path = '/home/user/www/jiguang.png';
+
+# 把图片 'jiguang.png' 作为图片上传
+$response = $resource->upload('image', $path);
+
+# 把图片 'jiguang.png' 作为文件上传
+$response = $resource->upload('file', $path);
+```
+
+### 资源下载
+
+```php
+$resource->download($mediaId)
+```
+
+**参数：**
+
+> $mediaId: 表示资源的 mediaId，包括用户的 avatar 字段，资源上传之后返回
+
+**示例：**
+
+```php
+$mediaId = 'xxxx';
+
+$response = $resource->download($mediaId);
 ```

@@ -24,6 +24,14 @@ class Client {
         return self::request($this->client, 'DELETE', $uri, $body);
     }
 
+    public function upload($uri, array $body = []) {
+        $headers = [
+            'Content-Type: multipart/form-data',
+            'Connection: Keep-Alive'
+        ];
+        return self::request($this->client, 'UPLOAD', $uri, $body, $headers);
+    }
+
     public static function getInstance($client) {
         if (is_null(self::$_instance) || !(self::$_instance instanceof self)) {
             self::$_instance = new self($client);
@@ -36,15 +44,18 @@ class Client {
     }
     private function __clone() {}
 
-    private static function request($client, $method, $uri, array $body = []) {
+    private static function request($client, $method, $uri, array $body = [], array $headers = []) {
+        $default_headers = [
+            'Content-Type: application/json',
+            'Connection: Keep-Alive'
+        ];
+
+        $method = strtoupper($method);
         $ch = curl_init();
         $options = array(
             CURLOPT_RETURNTRANSFER => true,
             CURLOPT_HEADER => true,
-            CURLOPT_HTTPHEADER => array(
-                'Content-Type: application/json',
-                'Connection: Keep-Alive'
-            ),
+            CURLOPT_HTTPHEADER => (empty($headers) ? $default_headers : $headers),
             CURLOPT_USERAGENT => 'JMessage-Api-PHP-Client',
             CURLOPT_CONNECTTIMEOUT => 20,
             CURLOPT_TIMEOUT => 120,
@@ -53,10 +64,24 @@ class Client {
             CURLOPT_USERPWD => $client->getAuth(),
 
             CURLOPT_URL => $uri,
-            CURLOPT_CUSTOMREQUEST => strtoupper($method),
+            CURLOPT_CUSTOMREQUEST => ('UPLOAD' == $method) ? 'POST' : $method
         );
+
         if (!empty($body)) {
-            $options[CURLOPT_POSTFIELDS] = json_encode($body);
+            if ('UPLOAD' == $method) {
+                if (class_exists('\CURLFile')) {
+                    $options[CURLOPT_SAFE_UPLOAD] = true;
+                    $options[CURLOPT_POSTFIELDS] = ['filename' => new \CURLFile($body['path'])];
+                } else {
+                # TODO
+                    if (defined('CURLOPT_SAFE_UPLOAD')) {
+                        $options[CURLOPT_SAFE_UPLOAD] = false;
+                        $options[CURLOPT_POSTFIELDS] = '';
+                    }
+                }
+            } else {
+                $options[CURLOPT_POSTFIELDS] = json_encode($body);
+            }
         }
 
         curl_setopt_array($ch, $options);
