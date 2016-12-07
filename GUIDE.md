@@ -133,7 +133,7 @@ $user->update($username, array $options);
 > $options: 更新选项数组，表示需要更新的用户信息和值。支持 **nickname**、**avatar**、**birthday**、**signature**、**gender**、**region**、**address** 中的一个或多个
 
 参数 | 意义 | 说明
--- | -- | --
+--- | --- | ---
 nickname | （选填）用户昵称 | 不支持的字符：英文字符： \n \r\n
 avatar | （选填）头像 | 需要填上从文件上传接口获得的 media_id
 birthday | （选填）生日 | example: 1990-01-24 yyyy-MM-dd
