@@ -1,6 +1,6 @@
 <?php
 require __DIR__ . '/config.php';
-use JMessage\Report;
+use JMessage\IM\Report;
 
 $report = new Report($jm);
 

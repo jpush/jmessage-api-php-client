@@ -1,6 +1,6 @@
 <?php
-namespace JMessage;
-use JMessage\Http;
+namespace JMessage\IM;
+use JMessage\IM;
 
 class Report extends IM {
 
