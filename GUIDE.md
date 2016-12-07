@@ -40,6 +40,12 @@
 * [Resource 媒体文件](#resource-媒体文件)
     * [资源上传](#资源上传)
     * [资源下载](#资源下载)
+* [发送消息](#发送消息)
+    * [发送文本消息](#发送文本消息)
+    * [发送图片消息](#发送图片消息)
+    * [发送自定义消息](#发送自定义消息)
+
+
 ## JMessage Client
 
 ```php
@@ -861,3 +867,95 @@ $mediaId = 'xxxx';
 
 $response = $resource->download($mediaId);
 ```
+
+## 发送消息
+
+```php
+use JMessage\IM\Message;
+
+$message = new Message($client);
+```
+
+### 发送文本消息
+
+```php
+$message->$sendText($version, array $from, array $target, array $msg);
+```
+
+**参数：**
+
+> $version: 版本号
+
+> $from: 发送者信息数组
+
+> $target: 接受者信息数组
+
+> $msg: 消息体数组
+
+**发送者信息数组 $from 说明：**
+
+ 键 | 是否必须 | 含义
+ --- | --- | ---
+ type | 是 | 发送消息者身份 当前只限 admin 用户，必须先注册 admin 用户
+ id | 是 | 发送者的用户名
+ name | 否 | 发送者展示名
+
+
+**接受者信息数组 $target 说明：**
+
+ 键 | 是否必须 | 含义
+ --- | --- | ---
+ type | 是 | 发送目标类型， 'single' - 个人，'group' - 群组
+ id | 是 | 目标 id， 'single' 填 username 'group' 填 Group Id
+ name | 否 | 接受者展示名
+
+**消息体数组 $msg 说明：**
+
+ 键 | 是否必须 | 含义
+ --- | --- | ---
+ text | 是 | 消息内容
+ extras | 否 | 接受一个自定义键值对数组
+
+### 发送图片消息
+
+```php
+$message->$sendImage($version, array $from, array $target, array $msg);
+```
+
+**参数：**
+
+> $version: 版本号
+
+> $from: 发送者信息数组（说明同上）
+
+> $target: 接受者信息数组（说明同上）
+
+> $msg: 消息体数组
+
+**消息体数组 $msg 说明：**
+
+ 键 | 是否必须 | 含义
+ --- | --- | ---
+ mediaId | 是 | 文件上传之后服务器端所返回的 key，用于之后生成下载的 url
+ mediaCrc32 | 是 | 文件的 crc32 校验码，用于下载大图的校验
+ width | 是 | 图片原始宽度
+ height | 是 | 图片原始高度
+ format | 是 | 图片格式
+ fsize | 是 | 文件大小（字节数）
+ extras | 否 | 接受一个自定义键值对数组
+
+### 发送自定义消息
+
+```php
+$message->sendCustom($version, array $from, array $target, array $msg);
+```
+
+**参数：**
+
+> $version: 版本号
+
+> $from: 发送者信息数组（说明同上）
+
+> $target: 接受者信息数组（说明同上）
+
+> $msg: 消息体数组，接受一个自定义键值对数组
