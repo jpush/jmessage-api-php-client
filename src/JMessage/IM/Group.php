@@ -1,15 +1,10 @@
 <?php
 namespace JMessage\IM;
-use JMessage\Http\Client;
+use JMessage\IM;
 
-class Group {
+class Group extends IM {
 
     const BASE_URI = 'https://api.im.jpush.cn/v1/groups/';
-    private $client;
-
-    public function __construct($client) {
-        $this->client = Client::getInstance($client);
-    }
 
     public function create($owner, $name, $desc, array $members = []) {
         $uri = self::BASE_URI;
@@ -19,13 +14,13 @@ class Group {
             'desc' => $desc,
             'members_username' => $members
         ];
-        $response = $this->client->post($uri, $body);
+        $response = $this->post($uri, $body);
         return $response;
     }
 
     public function show($gid) {
         $uri = self::BASE_URI . $gid;
-        $response = $this->client->get($uri);
+        $response = $this->get($uri);
         return $response;
     }
 
@@ -36,13 +31,13 @@ class Group {
         if (!is_null($name)) { $body['name'] = $name; }
         if (!is_null($desc)) { $body['desc'] = $desc; }
 
-        $response = $this->client->put($uri, $body);
+        $response = $this->put($uri, $body);
         return $response;
     }
 
     public function delete($gid) {
         $uri = self::BASE_URI . $gid;
-        $response = $this->client->delete($uri);
+        $response = $this->del($uri);
         return $response;
     }
 
@@ -52,7 +47,7 @@ class Group {
             'start' => $start,
             'count' => $count
         ];
-        $response = $this->client->get($uri, $query);
+        $response = $this->get($uri, $query);
         return $response;
     }
 
@@ -65,13 +60,13 @@ class Group {
     public function updateMembers($gid, array $options) {
         $uri = self::BASE_URI . $gid . '/members';
         $body = $options;
-        $response = $this->client->post($uri, $body);
+        $response = $this->post($uri, $body);
         return $response;
     }
 
     public function members($gid) {
         $uri = self::BASE_URI . $gid . '/members';
-        $response = $this->client->get($uri);
+        $response = $this->get($uri);
         return $response;
     }
 }

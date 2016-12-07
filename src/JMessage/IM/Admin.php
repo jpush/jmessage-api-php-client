@@ -1,20 +1,15 @@
 <?php
 namespace JMessage\IM;
-use JMessage\Http\Client;
+use JMessage\IM;
 
-class Admin {
+class Admin extends IM {
 
     const BASE_URI = 'https://api.im.jpush.cn/v1/admins/';
-    private $client;
-
-    public function __construct($client) {
-        $this->client = Client::getInstance($client);
-    }
 
     public function register(array $admin) {
         $uri = self::BASE_URI;
         $body = $admin;
-        $response = $this->client->post($uri, $body);
+        $response = $this->post($uri, $body);
         return $response;
     }
 
@@ -24,7 +19,7 @@ class Admin {
             'start' => $start,
             'count' => $count
         ];
-        $response = $this->client->get($uri, $query);
+        $response = $this->get($uri, $query);
         return $response;
     }
 }

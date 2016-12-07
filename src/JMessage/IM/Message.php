@@ -1,15 +1,10 @@
 <?php
 namespace JMessage\IM;
-use JMessage\Http\Client;
+use JMessage\IM;
 
-class Message {
+class Message extends IM {
 
     const BASE_URI = 'https://api.im.jpush.cn/v1/messages';
-    private $client;
-
-    public function __construct($client) {
-        $this->client = Client::getInstance($client);
-    }
 
     public function sendText($version, array $from, array $target, array $msg) {
         $options = [
@@ -85,7 +80,7 @@ class Message {
     public function send($options) {
         $uri = self::BASE_URI;
         $body = $options;
-        $response = $this->client->post($uri, $body);
+        $response = $this->post($uri, $body);
         return $response;
     }
 }

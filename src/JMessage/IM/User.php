@@ -1,51 +1,46 @@
 <?php
 namespace JMessage\IM;
-use JMessage\Http\Client;
+use JMessage\IM;
 
-class User {
+class User extends IM {
 
     const BASE_URI = 'https://api.im.jpush.cn/v1/users/';
-    private $client;
-
-    public function __construct($client) {
-        $this->client = Client::getInstance($client);
-    }
 
     public function register(array $users) {
         $uri = self::BASE_URI;
         $body = $users;
-        $response = $this->client->post($uri, $body);
+        $response = $this->post($uri, $body);
         return $response;
     }
 
     public function show($username) {
         $uri = self::BASE_URI . $username;
-        $response = $this->client->get($uri);
+        $response = $this->get($uri);
         return $response;
     }
 
     public function update($username, array $options) {
         $uri = self::BASE_URI . $username;
         $body = $options;
-        $response = $this->client->put($uri, $body);
+        $response = $this->put($uri, $body);
         return $response;
     }
 
     public function stat($username) {
         $uri = self::BASE_URI . $username . '/userstat';
-        $response = $this->client->get($uri);
+        $response = $this->get($uri);
         return $response;
     }
 
     public function updatePassword($username, $password) {
         $uri = self::BASE_URI . $username . '/password';
-        $response = $this->client->put($uri, [ 'new_password' => $password ]);
+        $response = $this->put($uri, [ 'new_password' => $password ]);
         return $response;
     }
 
     public function delete($username) {
         $uri = self::BASE_URI . $username;
-        $response = $this->client->delete($uri);
+        $response = $this->del($uri);
         return $response;
     }
 
@@ -55,13 +50,13 @@ class User {
             'start' => $start,
             'count' => $count
         ];
-        $response = $this->client->get($uri, $query);
+        $response = $this->get($uri, $query);
         return $response;
     }
 
     public function groups($username) {
         $uri = self::BASE_URI . $username . '/groups';
-        $response = $this->client->get($uri);
+        $response = $this->get($uri);
         return $response;
     }
 
@@ -102,7 +97,7 @@ class User {
     public function nodisturb($touser, array $options) {
         $uri = self::BASE_URI . $touser . '/nodisturb';
         $body = $options;
-        $response = $this->client->post($uri, $body);
+        $response = $this->post($uri, $body);
         return $response;
     }
 }

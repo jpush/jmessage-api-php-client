@@ -1,7 +1,7 @@
 <?php
-namespace JMessage\Http;
+namespace JMessage;
 
-class Client {
+class Http {
 
     private $client;
     private static $_instance = null;

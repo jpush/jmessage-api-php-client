@@ -1,33 +1,28 @@
 <?php
 namespace JMessage\IM;
-use JMessage\Http\Client;
+use JMessage\IM;
 
-class Blacklist {
+class Blacklist extends IM {
 
     const BASE_URI = 'https://api.im.jpush.cn/v1/users/';
-    private $client;
-
-    public function __construct($client) {
-        $this->client = Client::getInstance($client);
-    }
 
     public function add($user, array $usernames) {
         $uri = self::BASE_URI . $user . '/blacklist';
         $body = $usernames;
-        $response = $this->client->put($uri, $body);
+        $response = $this->put($uri, $body);
         return $response;
     }
 
     public function remove($user, array $usernames) {
         $uri = self::BASE_URI . $user . '/blacklist';
         $body = $usernames;
-        $response = $this->client->delete($uri, $body);
+        $response = $this->del($uri, $body);
         return $response;
     }
 
     public function list($user) {
         $uri = self::BASE_URI . $user . '/blacklist';
-        $response = $this->client->get($uri);
+        $response = $this->get($uri);
         return $response;
     }
 }
