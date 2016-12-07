@@ -164,7 +164,7 @@ $user->delete($username);
 **示例：**
 
 ```php
-# 删除用户名为 'jiguang' 的用户 
+# 删除用户名为 'jiguang' 的用户
 
 $username = 'jiguang';
 $response = $user->delete($username);
@@ -662,4 +662,112 @@ $group->members($gid);
 $gid = 12345;
 
 $response = $group->members($gid);
+```
+
+## Friend 好友
+
+```php
+use JMessage\IM\Friend;
+
+$friend = new Friend($client);
+```
+
+### 获取好友列表
+
+```php
+$friend->list($user);
+```
+
+**参数：**
+
+> $user: 表示要获取其好友列表的用户
+
+**示例：**
+
+```php
+# 获取用户 'jiguang' 的好友列表
+
+$user = 'jiguang';
+
+$response = $friend->list($user);
+```
+
+### 添加好友
+
+```php
+$friend->add($user, array $friends);
+```
+
+**参数：**
+
+> $user: 表示要添加好友的用户
+
+> $friends: 表示要被添加到好友列表的用户数组
+
+**示例：**
+
+```php
+# 用户 'jiguang' 把用户 'username0', 'username1' 添加为好友
+
+$user = 'jiguang';
+$friends = ['username0', 'username1'];
+
+$response = $friend->add($user, $friends);
+```
+
+### 删除好友
+
+```php
+$friend->remove($user, array $friends);
+```
+
+**参数：**
+
+> $user: 表示要移除好友的用户
+
+> $friends: 表示要被从好友列表移除的用户数组
+
+
+**示例：**
+
+```php
+# 用户 'jiguang' 删除好友 'username0', 'username1'
+
+$user = 'jiguang';
+$friends = ['username0', 'username1'];
+
+$response = $friend->remove($user, $friends);
+```
+
+### 更新好友备注
+
+```php
+$group->updateNotename($user, array $options);
+```
+
+**参数：**
+
+> $user: 表示要更新好友备注的用户
+
+> $options: 表示更新好友备注的选项数组
+
+**示例：**
+
+```php
+# 用户 'jiguang' 更新好友 'username0', 'username1' 的好友备注
+
+$user = 'jiguang';
+$options = [
+    [
+        'username' => 'username0',
+        'note_name' => 'username0_alias',
+        'others' => 'good friend'
+    ], [
+        'username' => 'username1',
+        'note_name' => 'username1_alias',
+        'others' => 'normal friend'
+    ]
+];
+
+$response = $friend->updateNotename($user, $options);
 ```

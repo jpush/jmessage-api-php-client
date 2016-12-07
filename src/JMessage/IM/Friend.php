@@ -11,28 +11,28 @@ class Friend {
         $this->client = Client::getInstance($client);
     }
 
-    public function add($user, array $usernames) {
+    public function add($user, array $friends) {
         $uri = self::BASE_URI . $user . '/friends';
-        $body = $usernames;
+        $body = $friends;
         $response = $this->client->post($uri, $body);
         return $response;
     }
 
-    public function remove($user, array $usernames) {
+    public function remove($user, array $friends) {
         $uri = self::BASE_URI . $user . '/friends';
-        $body = $usernames;
+        $body = $friends;
         $response = $this->client->delete($uri, $body);
         return $response;
     }
 
-    public function updateNotename($user, array $friends) {
+    public function updateNotename($user, array $options) {
         $uri = self::BASE_URI . $user . '/friends';
-        $body = $usernames;
+        $body = $options;
         $response = $this->client->put($uri, $body);
         return $response;
     }
 
-    public function getList($user) {
+    public function list($user) {
         $uri = self::BASE_URI . $user . '/friends';
         $response = $this->client->get($uri);
         return $response;
