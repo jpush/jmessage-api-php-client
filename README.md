@@ -64,6 +64,10 @@ $ php examples/friend_examples.php
 ```
 > 当然也可编辑相关的示例文件，更改参数查看执行效果
 
+## ErrorCode
+
+JMessage 服务器端报的错误码。有可能出现在返回值中，可在这里查询含义： https://docs.jiguang.cn/jmessage/client/im_errorcode_server/
+
 ## Contributing
 
 Bug reports and pull requests are welcome on GitHub at https://github.com/jpush/jmessage-api-php-client.
