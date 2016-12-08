@@ -94,7 +94,18 @@ class Http {
             $header_size = curl_getinfo($ch, CURLINFO_HEADER_SIZE);
             $header_text = substr($output, 0, $header_size);
             $body = substr($output, $header_size);
-
+            $headers = array();
+            foreach (explode("\r\n", $header_text) as $i => $line) {
+                if (!empty($line)) {
+                    if ($i === 0) {
+                        $headers[0] = $line;
+                    } else if (strpos($line, ": ")) {
+                        list ($key, $value) = explode(': ', $line);
+                        $headers[$key] = $value;
+                    }
+                }
+            }
+            $response['headers'] = $headers;
             $response['body'] = json_decode($body, true);
             $response['http_code'] = $httpCode;
         }
