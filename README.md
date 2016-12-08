@@ -49,7 +49,7 @@ require 'path_to_sdk/autoload.php';
 **注：所下载的样例代码不可马上使用，需要在 `examples/config.php` 文件中填入相关的必要参数，或者设置相关环境变量，不进行这个操作则示例运行会失败。**另外为保护开发者隐私 `examples/config.php` 文件不在版本控制中，需要使用如下命令手动复制：
 
 ```php
-$ cp examples/config.php.example examples/config.php`
+$ cp examples/config.php.example examples/config.php
 ```
 
 **示例简单使用方法**
