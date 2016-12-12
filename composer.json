@@ -1,5 +1,5 @@
 {
-    "name": "jiguang/jmessage-api-php-client",
+    "name": "jiguang/jmessage",
     "type": "library",
     "version": "1.0.0",
     "description": "JMessage's officially supported PHP client library for accessing JMessage APIs.",

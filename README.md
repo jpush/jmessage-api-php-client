@@ -10,7 +10,7 @@
 
 #### 使用 Composer 安装
 
-- 在项目中的 `composer.json` 文件中添加 jpush 依赖：
+- 在项目中的 `composer.json` 文件中添加 jmessage 依赖：
 
 ```json
 "require": {
