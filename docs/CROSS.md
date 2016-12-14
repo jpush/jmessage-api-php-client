@@ -130,4 +130,22 @@ $options1 = [
 $response = $member->update($gid, $options1);
 ```
 
+#### 跨应用获取群组成员列表
 
+```php
+$member->list($gid);
+```
+
+**参数：**
+
+> $gid：表示群组 gid
+
+**示例：**
+
+```php
+# 跨应用获取群组 gid 为 'xxxx' 的群组的成员列表
+
+$gid = 'xxxx';
+
+$response = $member->list($gid);
+```
