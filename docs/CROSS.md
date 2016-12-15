@@ -190,12 +190,12 @@ $blacklist->add($user, $appKey, array $usernames);
 
 > $appKey：表示用户所属的 appKey
 
-> $usernames：添加进黑名单的用户的数组
+> $usernames：表示要添加进黑名单的用户的数组
 
 **示例：**
 
 ```php
-#  跨应用把用户 'username0' 和 'username1' 添加到用户 'jiguang' 的黑名单列表中
+# 跨应用把用户 'username0' 和 'username1' 添加到用户 'jiguang' 的黑名单列表中
 
 $user = 'jiguang';
 $appKey = 'xxxxxx';
@@ -216,16 +216,77 @@ $blacklist->remove($user, $appKey, array $usernames);
 
 > $appKey：表示用户所属的 appKey
 
-> $usernames：添加进黑名单的用户的数组
+> $usernames：表示要从黑名单移除的用户的数组
 
 **示例：**
 
 ```php
-#  跨应用把用户 'username0' 和 'username1' 从用户 'jiguang' 的黑名单列表中移除
+# 跨应用把用户 'username0' 和 'username1' 从用户 'jiguang' 的黑名单列表中移除
 
 $user = 'jiguang';
 $appKey = 'xxxxxx';
 $username = ['username0', 'username1'];
 
 $response = $blacklist->remove($user, $appKey, $usernames);
+```
+
+### 跨应用批量添加黑名单
+
+```php
+$blacklist->patchAdd($user, array $options);
+```
+
+**参数：**
+
+> $user：表示要跨应用批量管理其黑名单的用户
+
+> $options：表示跨应用批量添加黑名单的选项数组
+
+**示例：**
+
+```php
+# 跨应用把应用 ‘appKey0’ 中的用户 'username0' 和 'username1' 以及应用 ‘appKey1’ 中的用户 'username2' 和 'username3' 添加到用户 'jiguang' 的黑名单列表中
+
+$user = 'jiguang';
+
+$options = [
+        'appKey' => 'appKey0',
+        'usernames' => ['username0', 'username1']
+    ],[
+        'appKey' => 'appKey1',
+        'usernames' => ['username2', 'username3']
+];
+
+$response = $blacklist->add($user, $options);
+```
+
+### 跨应用批量移除黑名单
+
+```php
+$blacklist->patchRemove($user, array $options);
+```
+
+**参数：**
+
+> $user：表示要跨应用批量管理其黑名单的用户
+
+> $options：表示跨应用批量移除黑名单的选项数组
+
+
+**示例：**
+
+```php
+# 跨应用把应用 ‘appKey0’ 中的用户 'username0' 和 'username1' 以及应用 ‘appKey1’ 中的用户 'username2' 和 'username3' 从用户 'jiguang' 的黑名单列表中移除
+
+$user = 'jiguang';
+
+$options = [
+        'appKey' => 'appKey0',
+        'usernames' => ['username0', 'username1']
+    ],[
+        'appKey' => 'appKey1',
+        'usernames' => ['username2', 'username3']
+];
+
+$response = $blacklist->patchRemove($user, $options);
 ```
