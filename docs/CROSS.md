@@ -20,7 +20,7 @@ use JMessage\Cross\Member;
 $member = new Member($client);
 ```
 
-#### 跨应用添加成员
+### 跨应用添加成员
 
 ```php
 $member->add($gid, $appKey, array $usernames)
@@ -46,7 +46,7 @@ $usernames = ['username0', 'username1'];
 $response = $member->add($gid, $appKey, $usernames);
 ```
 
-#### 跨应用移除成员
+### 跨应用移除成员
 
 ```php
 $member->remove($gid, $appKey, array $usernames);
@@ -72,7 +72,7 @@ $usernames = ['username0', 'username1'];
 $response = $member->remove($gid, $appKey, $usernames);
 ```
 
-#### 跨应用管理群组成员
+### 跨应用更新群组成员
 
 > 跨应用管理成员的设置参数比较复杂，建议使用上面所述的 2 个方法
 
@@ -130,7 +130,7 @@ $options1 = [
 $response = $member->update($gid, $options1);
 ```
 
-#### 跨应用获取群组成员列表
+### 跨应用获取群组成员列表
 
 ```php
 $member->list($gid);
@@ -148,4 +148,84 @@ $member->list($gid);
 $gid = 'xxxx';
 
 $response = $member->list($gid);
+```
+
+## 跨应用管理黑名单
+
+```php
+use JMessage\Cross\Blacklist;
+
+$blacklist = new Blacklist($client);
+```
+
+### 跨应用获取黑名单列表
+
+```php
+$blacklist->list($user);
+```
+
+**参数：**
+
+> $user：表示要跨应用获取其黑名单列表的用户
+
+**示例：**
+
+```php
+# 跨应用获取用户 'jiguang' 的黑名单列表
+
+$user = 'jiguang';
+
+$response = $blacklist->list($user);
+```
+
+### 跨应用添加黑名单
+
+```php
+$blacklist->add($user, $appKey, array $usernames);
+```
+
+**参数：**
+
+> $user：表示要跨应用管理其黑名单的用户
+
+> $appKey：表示用户所属的 appKey
+
+> $usernames：添加进黑名单的用户的数组
+
+**示例：**
+
+```php
+#  跨应用把用户 'username0' 和 'username1' 添加到用户 'jiguang' 的黑名单列表中
+
+$user = 'jiguang';
+$appKey = 'xxxxxx';
+$username = ['username0', 'username1'];
+
+$response = $blacklist->add($user, $appKey, $usernames);
+```
+
+### 跨应用移除黑名单
+
+```php
+$blacklist->remove($user, $appKey, array $usernames);
+```
+
+**参数：**
+
+> $user：表示要跨应用管理其黑名单的用户
+
+> $appKey：表示用户所属的 appKey
+
+> $usernames：添加进黑名单的用户的数组
+
+**示例：**
+
+```php
+#  跨应用把用户 'username0' 和 'username1' 从用户 'jiguang' 的黑名单列表中移除
+
+$user = 'jiguang';
+$appKey = 'xxxxxx';
+$username = ['username0', 'username1'];
+
+$response = $blacklist->remove($user, $appKey, $usernames);
 ```
