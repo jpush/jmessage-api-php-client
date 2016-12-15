@@ -3,6 +3,7 @@
 * [JMessage Client](#jmessage-client)
 * [User 用户](#user-用户)
     * [注册用户](#注册用户)
+    * [批量注册用户](#批量注册用户)
     * [获取用户列表](#获取用户列表)
     * [获取用户信息](#获取用户信息)
     * [更新用户信息](#更新用户信息)
@@ -65,12 +66,32 @@ use JMessage\IM\User;
 $user = new User($client);
 ```
 
-### 注册用户
+### 注册单个用户
+
+```php
+$user->register($username, $password);
+```
+
+**参数：**
+
+> $username: 表示用户名
+
+> $password: 表示密码
+
+**示例：**
+
+```php
+$username = 'jiguang';
+$password = 'password';
+$response = $user->register($username, $password);
+```
+
+### 批量注册用户
 
 批量注册用户到极光 IM 服务器，一次批量注册最多支持 500 个用户。
 
 ```php
-$user->register(array $users);
+$user->patchRegister(array $users);
 ```
 
 **参数：**
@@ -87,7 +108,7 @@ $users = [
   ['username' => 'username1', 'password' => 'password1'],
   ['username' => 'jiguang', 'password' => 'password']
 ];
-$response = $user->register($users);
+$response = $user->patchRegister($users);
 ```
 
 ### 获取用户列表

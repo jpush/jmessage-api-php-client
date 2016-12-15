@@ -6,7 +6,14 @@ class User extends IM {
 
     const BASE_URI = 'https://api.im.jpush.cn/v1/users/';
 
-    public function register(array $users) {
+    public function register($username, $password) {
+        $body = [[
+            'username' => $username,
+            'password' => $password
+        ]];
+        return $this->patchRegister($body);
+    }
+    public function patchRegister(array $users) {
         $uri = self::BASE_URI;
         $body = $users;
         $response = $this->post($uri, $body);

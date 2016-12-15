@@ -18,5 +18,10 @@ $users = [
     ['username' => 'user_10', 'password' => 'password']
 ];
 
-$response = $user->register($users);
+$response = $user->patchRegister($users);
+print_r($response);
+
+$username = 'username_20';
+$password = 'password';
+$response = $user->register($username, $password);
 print_r($response);
