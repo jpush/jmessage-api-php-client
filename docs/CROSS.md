@@ -359,3 +359,127 @@ $options = [
 ]
 $response = $nodisturb->group($user, $appKey, $options);
 ```
+
+## 跨应用好友管理
+
+```php
+use JMessage\Cross\Friend;
+
+$friend = new Friend($client);
+```
+
+### 跨应用添加好友
+
+```php
+$friend->add($user, $appKey, array $friendnames);
+```
+
+**参数：**
+
+> $user：表示要跨应用管理好友的用户
+
+> $appKey：表示好友所属的 appKey
+
+> $friendnames：表示要添加的好友数组
+
+**示例：**
+
+```php
+# 用户 'jiguang' 跨应用把应用 'xxxxxx' 下的用户 'username0', 'username1' 添加为好友
+
+$user = 'jiguang';
+$appKey = 'xxxxxx';
+$friendnames = ['username0', 'username1'];
+
+$response = $friend->add($user, $appKey, $friendnames);
+```
+
+### 跨应用移除好友
+
+```php
+$friend->remove($user, $appKey, array $friendnames);
+```
+
+**参数：**
+
+> $user：表示要跨应用管理好友的用户
+
+> $appKey：表示好友所属的 appKey
+
+> $friendnames：表示要移除的好友数组
+
+**示例：**
+
+```php
+# 用户 'jiguang' 跨应用把应用 'xxxxxx' 下的用户 'username0', 'username1' 从好友列表移除
+
+$user = 'jiguang';
+$appKey = 'xxxxxx';
+$friendnames = ['username0', 'username1'];
+
+$response = $friend->remove($user, $appKey, $friendnames);
+```
+
+### 跨应用更新好友备注
+
+```php
+$friend->updateNotename($user, $appKey, $friendname, array $options);
+```
+
+**参数：**
+
+> $user：表示要跨应用管理好友的用户
+
+> $appKey：表示好友所属的 appKey
+
+> $friendname：表示要更新备注的好友
+
+> $options：表示跨应用更新好友备注的选项数组，支持键名 'note_name' 或 'others' 表示备注或其他备注信息
+
+**示例：**
+
+```php
+# 用户 'jiguang' 跨应用更新应用 'xxxxxx' 下的用户 'username0' 的备注为 'u00'
+
+$user = 'jiguang';
+$appKey = 'xxxxxx';
+$friendname = 'username0';
+$options = ['note_name' => 'u00'];
+
+$response = $friend->updateNotename($user, $appKey, $usernames, $options);
+```
+
+### 跨应用批量更新好友备注
+
+```php
+$friend->patchUpdateNotename($user, array $options);
+```
+
+**参数：**
+
+> $user：表示要跨应用管理好友的用户
+
+> $options：表示跨应用批量更新好友备注的选项数组
+
+**示例：**
+
+```php
+# 用户 'jiguang' 跨应用更新应用 'appKey0' 下的好友 'username0' 的备注为 'uu00'，
+# 同时更新应用 'appKey1' 下的好友 'username1' 的其他备注信息为 'nothing to go'
+
+$user = 'jiguang';
+
+$options = [
+    [
+        'appKey' => 'appKey0',
+        'username' => 'username0',
+        'note_name' => 'uu00'
+    ],[
+        'appKey' => 'appKey1',
+        'username' => 'username1',
+        'others' => 'nothing to go'
+    ]
+];
+
+$response = $friend->patchUpdateNotename($user, $options);
+```
