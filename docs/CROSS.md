@@ -290,3 +290,72 @@ $options = [
 
 $response = $blacklist->patchRemove($user, $options);
 ```
+
+## 跨应用免打扰设置
+
+```php
+use JMessage\Cross\Nodisturb;
+
+$nodisturb = new Nodisturb($client);
+```
+
+### 跨应用单聊免打扰设置
+
+```php
+$nodisturb->single($user, $appKey, array $options);
+```
+
+**参数：**
+
+> $user：表示要设置跨应用单聊免打扰的用户
+
+> $appKey：表示用户所属的 appKey
+
+> $options：表示设置跨应用单聊免打扰的选项数组，支持键名 'add' 或 'remove' 表示添加或移除
+
+**示例：**
+
+```php
+$user = 'jiguang';
+$appKey = 'xxxxxx';
+$add = ['username0', 'username1'];
+$remove = ['username2', 'username3'];
+$options = ['add' => $add, 'remove' => $remove ];
+
+# 用户 'jiguang' 跨应用对 'xxxxxx' 应用下的用户 'username0', 'username1' 添加单聊免打扰，且同时对 'username2', 'username3' 移除单聊免打扰
+$response = $nodisturb->single($user, $appKey, ['add' => $add, 'remove' => $remove ]);
+
+# 用户 'jiguang' 跨应用仅对 'xxxxxx' 应用下的用户 'username0', 'username1' 添加单聊免打扰
+$response = $nodisturb->single($user, $appKey, ['add' => $add]);
+
+# 用户 'jiguang' 跨应用仅对 'xxxxxx' 应用下的用户 'username2', 'username3' 移除单聊免打扰
+$response = $nodisturb->single($user, $appKey, ['remove' => $remove ]);
+```
+
+### 跨应用群聊免打扰设置
+
+```php
+$nodisturb->group($user, $appKey, array $options);
+```
+
+**参数：**
+
+> $user：表示要设置跨应用群聊免打扰的用户
+
+> $appKey：表示群组所属的 appKey
+
+> $options：表示设置跨应用群聊免打扰的选项数组，支持键名 'add' 或 'remove' 表示添加或移除
+
+**示例：**
+
+```php
+# 用户 'jiguang' 跨应用对 'xxxxxx' 应用下的群组 'gid0', 'gid1' 添加群聊免打扰，且同时对 'gid2', 'gid3' 移除群聊免打扰
+
+$user = 'jiguang';
+$appKey = 'xxxxxx';
+$options = [
+    'add' => ['gid0', 'gid1'],
+    'remove' =>['gid2', 'gid3']
+]
+$response = $nodisturb->group($user, $appKey, $options);
+```

@@ -6,32 +6,28 @@ class Nodisturb extends IM {
 
     const BASE_URI = 'https://api.im.jpush.cn/v1/cross/users/';
 
-    public function single($appKey, $user, array $options) {
-        $add = isset($options['add']) ? $options['add'] : [];
-        $remove = isset($options['remove']) ? $options['remove'] : [];
-        $body = [];
-        if (!empty($options['add'])) {
-            $body['add'] = $add;
+    public function single($user, $appKey, array $options) {
+        $body = [ 'appKey' => $appKey ];
+        if (!isset($options['add'])) {
+            $body['single']['add'] = $options['add'];
         }
-        if (!empty($options['remove'])) {
-            $body['remove'] = $remove;
+        if (!isset($options['remove'])) {
+            $body['single']['remove'] = $options['remove'];
         }
 
-        return $this->nodisturb($user, [ 'single' => $body ]);
+        return $this->nodisturb($user, [$body]);
     }
 
-    public function group($appKey, $user, array $options) {
-        $add = isset($options['add']) ? $options['add'] : [];
-        $remove = isset($options['remove']) ? $options['remove'] : [];
-        $body = [];
-        if (!empty($options['add'])) {
-            $body['add'] = $add;
+    public function group($user, $appKey, array $options) {
+        $body = [ 'appKey' => $appKey ];
+        if (!isset($options['add'])) {
+            $body['group']['add'] = $options['add'];
         }
-        if (!empty($options['remove'])) {
-            $body['remove'] = $remove;
+        if (!isset($options['remove'])) {
+            $body['group']['remove'] = $options['remove'];
         }
 
-        return $this->nodisturb($user, [ 'group' => $body ]);
+        return $this->nodisturb($user, [$body]);
     }
 
     public function nodisturb($user, array $options ) {
