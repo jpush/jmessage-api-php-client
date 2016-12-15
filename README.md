@@ -4,7 +4,7 @@
 
 对应的 REST API 文档: https://docs.jiguang.cn/jmessage/server/rest_api_im/
 
-> 支持的 PHP 版本: 5.3.3 ～ 5.6.x, 7
+> 支持的 PHP 版本: 5.4 ～ 5.6.x, 7
 
 ## Installation
 
