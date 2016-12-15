@@ -296,8 +296,9 @@ $user->addGroupNodisturb($touser, array $gids);
 **示例：**
 
 ```php
-# TODO
+# 用户 'jiguang' 添加对群组 'gid0' 和 'gid1' 的群聊免打扰
 $touser = 'jiguang';
+$gid = ['gid0', 'gid1'];
 $response = $user->addGroupNodisturb($touser, $gids);
 ```
 
@@ -316,9 +317,10 @@ $user->removeGroupNodisturb($touser, array $gids);
 **示例：**
 
 ```php
-# TODO
+# 用户 'jiguang' 移除对群组 'gid0' 和 'gid1' 的群聊免打扰
 $touser = 'jiguang';
-$response = $user->addGroupNodisturb($touser, $gids);
+$gid = ['gid0', 'gid1'];
+$response = $user->removeGroupNodisturb($touser, $gids);
 ```
 
 ### 开启全局免打扰
