@@ -11,10 +11,10 @@ class Blacklist extends IM {
             'appKey' => $appKey,
             'usernames' => $usernames
         ]];
-        return $this->patchAdd($user, $body)
+        return $this->batchAdd($user, $body)
     }
 
-    public function patchAdd($user, array $options) {
+    public function batchAdd($user, array $options) {
         $uri = self::BASE_URI . $user . '/blacklist';
         $body = $options;
         $response = $this->put($uri, $body);
@@ -26,10 +26,10 @@ class Blacklist extends IM {
             'appKey' => $appKey,
             'usernames' => $usernames
         ]];
-        return $this->patchRemove($user, $body)
+        return $this->batchRemove($user, $body)
     }
 
-    public function patchRemove($user, array $options) {
+    public function batchRemove($user, array $options) {
         $uri = self::BASE_URI . $user . '/blacklist';
         $body = $options;
         $response = $this->del($uri, $body);

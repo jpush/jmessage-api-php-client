@@ -11,9 +11,9 @@ class User extends IM {
             'username' => $username,
             'password' => $password
         ]];
-        return $this->patchRegister($body);
+        return $this->batchRegister($body);
     }
-    public function patchRegister(array $users) {
+    public function batchRegister(array $users) {
         $uri = self::BASE_URI;
         $body = $users;
         $response = $this->post($uri, $body);

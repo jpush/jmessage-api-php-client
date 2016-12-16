@@ -254,7 +254,7 @@ $response = $blacklist->remove($user, $appKey, $usernames);
 ### 跨应用批量添加黑名单
 
 ```php
-$blacklist->patchAdd($user, array $options);
+$blacklist->batchAdd($user, array $options);
 ```
 
 **参数：**
@@ -284,7 +284,7 @@ $response = $blacklist->add($user, $options);
 ### 跨应用批量移除黑名单
 
 ```php
-$blacklist->patchRemove($user, array $options);
+$blacklist->batchRemove($user, array $options);
 ```
 
 **参数：**
@@ -309,7 +309,7 @@ $options = [
         'usernames' => ['username2', 'username3']
 ];
 
-$response = $blacklist->patchRemove($user, $options);
+$response = $blacklist->batchRemove($user, $options);
 ```
 
 ## 跨应用免打扰设置
@@ -473,7 +473,7 @@ $response = $friend->updateNotename($user, $appKey, $usernames, $options);
 ### 跨应用批量更新好友备注
 
 ```php
-$friend->patchUpdateNotename($user, array $options);
+$friend->batchUpdateNotename($user, array $options);
 ```
 
 **参数：**
@@ -502,5 +502,5 @@ $options = [
     ]
 ];
 
-$response = $friend->patchUpdateNotename($user, $options);
+$response = $friend->batchUpdateNotename($user, $options);
 ```

@@ -40,10 +40,10 @@ class Friend extends IM {
             $body['others'] = $options['others'];
         }
 
-        return $this->patchUpdateNotename($user, [$body]);
+        return $this->batchUpdateNotename($user, [$body]);
     }
 
-    public function patchUpdateNotename($user, array $options) {
+    public function batchUpdateNotename($user, array $options) {
         $uri = self::BASE_URI . $user . '/friends';
         $response = $this->put($uri, $body);
         return $response;

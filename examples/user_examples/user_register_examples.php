@@ -18,7 +18,7 @@ $users = [
     ['username' => 'user_10', 'password' => 'password']
 ];
 
-$response = $user->patchRegister($users);
+$response = $user->batchRegister($users);
 print_r($response);
 
 $username = 'username_20';

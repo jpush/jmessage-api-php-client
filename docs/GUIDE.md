@@ -91,7 +91,7 @@ $response = $user->register($username, $password);
 批量注册用户到极光 IM 服务器，一次批量注册最多支持 500 个用户。
 
 ```php
-$user->patchRegister(array $users);
+$user->batchRegister(array $users);
 ```
 
 **参数：**
@@ -108,7 +108,7 @@ $users = [
   ['username' => 'username1', 'password' => 'password1'],
   ['username' => 'jiguang', 'password' => 'password']
 ];
-$response = $user->patchRegister($users);
+$response = $user->batchRegister($users);
 ```
 
 ### 获取用户列表
