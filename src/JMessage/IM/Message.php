@@ -8,7 +8,7 @@ class Message extends IM {
 
     public function sendText($version, array $from, array $target, array $msg) {
         $options = [
-            'version' => $version;
+            'version' => $version,
             'target_type' => $target['type'],
             'from_type' => $from['type'],
             'msg_type' => 'text',
@@ -32,7 +32,7 @@ class Message extends IM {
 
     public function sendImage($version, array $from, array $target, array $msg) {
         $options = [
-            'version' => $version;
+            'version' => $version,
             'target_type' => $target['type'],
             'from_type' => $from['type'],
             'msg_type' => 'image',
@@ -60,7 +60,7 @@ class Message extends IM {
     }
     public function sendCustom($version, array $from, array $target, array $msg) {
         $options = [
-            'version' => $version;
+            'version' => $version,
             'target_type' => $target['type'],
             'from_type' => $from['type'],
             'msg_type' => 'custom',
