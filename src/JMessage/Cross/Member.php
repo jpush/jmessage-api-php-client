@@ -29,7 +29,7 @@ class Member extends IM {
         return $response;
     }
 
-    public function list($gid) {
+    public function listAll($gid) {
         $uri = self::BASE_URI . $gid . '/members';
         $response = $this->get($uri);
         return $response;

@@ -31,7 +31,7 @@ print_r($response);
 echo "\n";
 
 echo "group list: \n";
-$response = $group->list(0, 10);
+$response = $group->listAll(0, 10);
 print_r($response);
 echo "\n";
 

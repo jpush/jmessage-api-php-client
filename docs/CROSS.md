@@ -154,7 +154,7 @@ $response = $member->update($gid, $options1);
 ### 跨应用获取群组成员列表
 
 ```php
-$member->list($gid);
+$member->listAll($gid);
 ```
 
 **参数：**
@@ -168,7 +168,7 @@ $member->list($gid);
 
 $gid = 'xxxx';
 
-$response = $member->list($gid);
+$response = $member->listAll($gid);
 ```
 
 ## 跨应用管理黑名单
@@ -182,7 +182,7 @@ $blacklist = new Blacklist($client);
 ### 跨应用获取黑名单列表
 
 ```php
-$blacklist->list($user);
+$blacklist->listAll($user);
 ```
 
 **参数：**
@@ -196,7 +196,7 @@ $blacklist->list($user);
 
 $user = 'jiguang';
 
-$response = $blacklist->list($user);
+$response = $blacklist->listAll($user);
 ```
 
 ### 跨应用添加黑名单

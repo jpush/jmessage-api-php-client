@@ -27,7 +27,7 @@ class Friend extends IM {
         return $response;
     }
 
-    public function list($user) {
+    public function listAll($user) {
         $uri = self::BASE_URI . $user . '/friends';
         $response = $this->get($uri);
         return $response;

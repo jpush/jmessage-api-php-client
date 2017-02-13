@@ -11,7 +11,7 @@ print_r($response);
 echo "\n";
 
 echo "get blacklists: \n";
-$response = $blacklist->list($user);
+$response = $blacklist->listAll($user);
 print_r($response);
 echo "\n";
 
@@ -21,6 +21,6 @@ print_r($response);
 echo "\n";
 
 echo "get blacklists: \n";
-$response = $blacklist->list($user);
+$response = $blacklist->listAll($user);
 print_r($response);
 echo "\n";

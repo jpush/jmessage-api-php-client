@@ -114,7 +114,7 @@ $response = $user->batchRegister($users);
 ### 获取用户列表
 
 ```php
-$user->list($start, $count);
+$user->listAll($start, $count);
 ```
 
 **参数：**
@@ -127,7 +127,7 @@ $user->list($start, $count);
 
 ```php
 # 获取从编号 2 开始的 100 个记录的用户列表
-$response = $user->list(2, 100);
+$response = $user->listAll(2, 100);
 ```
 
 ### 获取用户信息
@@ -449,7 +449,7 @@ $response = $admin->register($info);
 ### 获取应用管理员列表
 
 ```php
-$admin->list($start, $count);
+$admin->listAll($start, $count);
 ```
 
 **参数：**
@@ -462,7 +462,7 @@ $admin->list($start, $count);
 
 ```php
 # 获取从编号 2 开始的 10 个记录的管理员 admin 列表
-$response = $admin->list(2, 10);
+$response = $admin->listAll(2, 10);
 ```
 
 ## Blacklist 黑名单
@@ -476,7 +476,7 @@ $blacklist = new Blacklist($client);
 ### 黑名单列表
 
 ```php
-$blacklist->list($user);
+$blacklist->listAll($user);
 ```
 
 **参数：**
@@ -488,7 +488,7 @@ $blacklist->list($user);
 ```php
 # 获取当前用户 'jiguang' 的黑名单列表
 $user = 'jiguang';
-$response = $blacklist->list($user);
+$response = $blacklist->listAll($user);
 ```
 
 ### 添加黑名单
@@ -744,7 +744,7 @@ $friend = new Friend($client);
 ### 获取好友列表
 
 ```php
-$friend->list($user);
+$friend->listAll($user);
 ```
 
 **参数：**
@@ -758,7 +758,7 @@ $friend->list($user);
 
 $user = 'jiguang';
 
-$response = $friend->list($user);
+$response = $friend->listAll($user);
 ```
 
 ### 添加好友

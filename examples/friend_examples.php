@@ -7,7 +7,7 @@ $user = 'user_0';
 $friends = ['user_1', 'user_2'];
 
 echo "list friends: \n";
-$response = $friend->list($user);
+$response = $friend->listAll($user);
 print_r($response);
 echo "\n";
 
@@ -17,7 +17,7 @@ print_r($response);
 echo "\n";
 
 echo "list friends: \n";
-$response = $friend->list($user);
+$response = $friend->listAll($user);
 print_r($response);
 echo "\n";
 
@@ -37,7 +37,7 @@ print_r($response);
 echo "\n";
 
 echo "list friends: \n";
-$response = $friend->list($user);
+$response = $friend->listAll($user);
 print_r($response);
 echo "\n";
 

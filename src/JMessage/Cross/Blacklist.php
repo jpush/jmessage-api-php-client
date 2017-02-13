@@ -36,7 +36,7 @@ class Blacklist extends IM {
         return $response;
     }
 
-    public function list($user) {
+    public function listAll($user) {
         $uri = self::BASE_URI . $user . '/blacklist';
         $response = $this->get($uri);
         return $response;
