@@ -902,7 +902,7 @@ $message = new Message($client);
 ### 发送文本消息
 
 ```php
-$message->$sendText($version, array $from, array $target, array $msg);
+$message->sendText($version, array $from, array $target, array $msg);
 ```
 
 **参数：**
@@ -942,12 +942,12 @@ $message->$sendText($version, array $from, array $target, array $msg);
 ### 发送图片消息
 
 ```php
-$message->$sendImage($version, array $from, array $target, array $msg);
+$message->sendImage($version, array $from, array $target, array $msg);
 ```
 
 **参数：**
 
-> $version: 版本号
+> $version: 版本号，目前是1
 
 > $from: 发送者信息数组（说明同上）
 
