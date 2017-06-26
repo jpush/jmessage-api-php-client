@@ -11,7 +11,7 @@ class Blacklist extends IM {
             'appKey' => $appKey,
             'usernames' => $usernames
         ]];
-        return $this->batchAdd($user, $body)
+        return $this->batchAdd($user, $body);
     }
 
     public function batchAdd($user, array $options) {
@@ -26,7 +26,7 @@ class Blacklist extends IM {
             'appKey' => $appKey,
             'usernames' => $usernames
         ]];
-        return $this->batchRemove($user, $body)
+        return $this->batchRemove($user, $body);
     }
 
     public function batchRemove($user, array $options) {
