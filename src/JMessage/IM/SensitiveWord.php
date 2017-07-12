@@ -6,7 +6,7 @@ class SensitiveWord extends IM {
 
     const BASE_URI = 'https://api.im.jpush.cn/v1/sensitiveword';
 
-    public function listAll($start, $count) {
+    public function listAll($count, $start = 0) {
         $uri = self::BASE_URI;
         $query = [
             'start' => $start,

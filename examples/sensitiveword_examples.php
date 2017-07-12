@@ -9,7 +9,7 @@ $word_1 = 'shit';
 $word_2 = 'damn';
 
 echo "list sensitiveword: \n";
-$response = $sensitiveword->listAll(0, 10);
+$response = $sensitiveword->listAll(10);
 print_r($response['body']);
 echo "\n";
 
@@ -19,7 +19,7 @@ print_r($response['body']);
 echo "\n";
 
 echo "list sensitiveword: \n";
-$response = $sensitiveword->listAll(0, 10);
+$response = $sensitiveword->listAll(10);
 print_r($response['body']);
 echo "\n";
 
@@ -29,7 +29,7 @@ print_r($response['body']);
 echo "\n";
 
 echo "list sensitiveword: \n";
-$response = $sensitiveword->listAll(0, 10);
+$response = $sensitiveword->listAll(10);
 print_r($response['body']);
 echo "\n";
 
@@ -39,7 +39,7 @@ print_r($response['body']);
 echo "\n";
 
 echo "list sensitiveword: \n";
-$response = $sensitiveword->listAll(0, 10);
+$response = $sensitiveword->listAll(10);
 print_r($response['body']);
 echo "\n";
 
@@ -49,7 +49,7 @@ print_r($response['body']);
 echo "\n";
 
 echo "list sensitiveword: \n";
-$response = $sensitiveword->listAll(0, 10);
+$response = $sensitiveword->listAll(10);
 print_r($response['body']);
 echo "\n";
 

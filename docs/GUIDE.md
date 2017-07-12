@@ -33,6 +33,7 @@
         * [添加群组成员](#添加群组成员)
         * [移除群组成员](#移除群组成员)
     * [获取群组成员列表](#获取群组成员列表)
+    * [获取当前应用的群组列表](#获取当前应用的群组列表)
 * [Friend 好友](#friend-好友)
     * [获取好友列表](#获取好友列表)
     * [添加好友](#添加好友)
@@ -122,7 +123,7 @@ $response = $user->batchRegister($users);
 ### 获取用户列表
 
 ```php
-$user->listAll($start, $count);
+$user->listAll($count, $start = 0);
 ```
 
 **参数：**
@@ -135,7 +136,7 @@ $user->listAll($start, $count);
 
 ```php
 # 获取从编号 2 开始的 100 个记录的用户列表
-$response = $user->listAll(2, 100);
+$response = $user->listAll(100, 2);
 ```
 
 ### 获取用户信息
@@ -457,7 +458,7 @@ $response = $admin->register($info);
 ### 获取应用管理员列表
 
 ```php
-$admin->listAll($start, $count);
+$admin->listAll($count, $start = 0);
 ```
 
 **参数：**
@@ -470,7 +471,7 @@ $admin->listAll($start, $count);
 
 ```php
 # 获取从编号 2 开始的 10 个记录的管理员 admin 列表
-$response = $admin->listAll(2, 10);
+$response = $admin->listAll(10, 2);
 ```
 
 ## Blacklist 黑名单
@@ -739,6 +740,25 @@ $group->members($gid);
 $gid = 12345;
 
 $response = $group->members($gid);
+```
+
+### 获取当前应用的群组列表
+
+```php
+$group->listAll($count, $start = 0);
+```
+
+**参数：**
+
+$start: 开始的记录数
+
+$count: 本次读取的记录数量，最大值为500
+
+**示例：**
+
+```php
+# 获取从编号 2 开始的 100 个记录的群组列表
+$response = $group->listAll(100, 2);
 ```
 
 ## Friend 好友
@@ -1068,7 +1088,7 @@ $sensitiveWord = new SensitiveWord($client);
 ### 获取敏感词列表
 
 ```php
-$sensitiveWord->listAll($start, $count);
+$sensitiveWord->listAll($count, $start = 0);
 ```
 
 **参数：**
@@ -1081,7 +1101,7 @@ $sensitiveWord->listAll($start, $count);
 
 ```php
 # 获取从编号 2 开始的 10 个记录的敏感词列表
-$response = $sensitiveword->listAll(2, 10);
+$response = $sensitiveword->listAll(10, 2);
 ```
 
 ### 添加敏感词

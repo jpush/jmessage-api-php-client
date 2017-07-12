@@ -41,7 +41,7 @@ class Group extends IM {
         return $response;
     }
 
-    public function listAll($start, $count) {
+    public function listAll($count, $start = 0) {
         $uri = self::BASE_URI;
         $query = [
             'start' => $start,

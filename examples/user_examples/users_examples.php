@@ -8,7 +8,7 @@ $user = new User($jm);
 $username = 'user_0';
 
 echo "get users list: \n";
-$response = $user->listAll(0, 100);
+$response = $user->listAll(100);
 print_r($response['body']);
 echo "\n";
 
