@@ -21,6 +21,7 @@
     * [跨应用移除好友](#跨应用移除好友)
     * [跨应用更新好友备注](#跨应用更新好友备注)
     * [跨应用批量更新好友备注](#跨应用批量更新好友备注)
+* [跨应用发送消息](#跨应用发送消息)
 
 ## JMessage Client
 
@@ -504,3 +505,41 @@ $options = [
 
 $response = $friend->batchUpdateNotename($user, $options);
 ```
+
+## 跨应用发送消息
+
+```php
+use JMessage\Cross\Message;
+
+$message = new Message($client);
+```
+
+```php
+# 跨应用发送文本消息
+$message->sendText($version, $appKey, array $from, array $target, array $msg, array $notification = [], array $options = []);
+
+# 跨应用发送图片消息
+$message->sendImage($version, $appKey, array $from, array $target, array $msg, array $notification = [], array $options = []);
+
+# 跨应用发送语音消息
+$message->sendVoice($version, $appKey, array $from, array $target, array $msg, array $notification = [], array $options = []);
+
+# 跨应用发送自定义消息
+$message->sendCustom($version, $appKey, array $from, array $target, array $msg, array $notification = [], array $options = []);
+```
+
+**参数：**
+
+> $version: 版本号，目前是 1
+
+> $appKey: 跨应用目标appkey
+
+> $from: 发送者信息数组（说明同普通消息）
+
+> $target: 接受者信息数组（说明同同普通消息）
+
+> $msg: 消息体数组（说明同同普通消息）
+
+> $notification: 自定义通知栏展示数组（说明同同普通消息）
+
+> $options: 其他选项数组（说明同同普通消息）

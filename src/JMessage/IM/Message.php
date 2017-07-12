@@ -6,13 +6,13 @@ class Message extends IM {
 
     const BASE_URI = 'https://api.im.jpush.cn/v1/messages';
 
-    public function sendText($version, array $from, array $target, array $msg, array $notification = [], $options = []) {
+    public function sendText($version, array $from, array $target, array $msg, array $notification = [], array $options = []) {
         $opts = array_merge([
             'msg_type' => 'text',
             'msg_body' => [
                 'text' => $msg['text']
             ]
-        ], $this->buildMessage($version, $from, $target, $notification));
+        ], $this->buildMessage($version, $from, $target, $notification, $options));
 
         if (isset($msg['extras']) && is_array($msg['extras'])) {
             $opts['msg_body']['extras'] = $msg['extras'];
@@ -20,7 +20,7 @@ class Message extends IM {
         return $this->send($opts);
     }
 
-    public function sendImage($version, array $from, array $target, array $msg, array $notification = [], $options = []) {
+    public function sendImage($version, array $from, array $target, array $msg, array $notification = [], array $options = []) {
         $opts = array_merge([
             'msg_type' => 'image',
             'msg_body' => [
@@ -31,12 +31,12 @@ class Message extends IM {
                 'format'      => $msg['format'],
                 'fsize'       => $msg['fsize']
             ]
-        ], $this->buildMessage($version, $from, $target, $notification, ));
+        ], $this->buildMessage($version, $from, $target, $notification, $options));
 
         return $this->send($opts);
     }
 
-    public function sendVoice($version, array $from, array $target, array $msg, array $notification = [], $options = []) {
+    public function sendVoice($version, array $from, array $target, array $msg, array $notification = [], array $options = []) {
         $opts = array_merge([
             'msg_type' => 'voice',
             'msg_body' => [
@@ -46,21 +46,21 @@ class Message extends IM {
                 'hash'        => $msg['hash'],
                 'fsize'       => $msg['fsize']
             ]
-        ], $this->buildMessage($version, $from, $target, $notification));
+        ], $this->buildMessage($version, $from, $target, $notification, $options));
 
         return $this->send($opts);
     }
 
-    public function sendCustom($version, array $from, array $target, array $msg, array $notification = [], $options = []) {
+    public function sendCustom($version, array $from, array $target, array $msg, array $notification = [], array $options = []) {
         $opts = array_merge([
             'msg_type' => 'custom',
             'msg_body' => $msg
-        ], $this->buildMessage($version, $from, $target, $notification));
+        ], $this->buildMessage($version, $from, $target, $notification, $options));
 
         return $this->send($opts);
     }
 
-    private function buildMessage($version, array $from, array $target, array $notification = [], $options = []) {
+    private function buildMessage($version, array $from, array $target, array $notification = [], array $options = []) {
         $opts = [
             'version'     => $version,
             'target_type' => $target['type'],
@@ -78,6 +78,10 @@ class Message extends IM {
             $opts['no_offline'] = !$options['offline'];
         }
 
+        if (isset($options['target_appkey'])) {
+            $opts['target_appkey'] = $options['target_appkey'];
+        }
+
         if (isset($notification['notifiable'])){
             $opts['no_notification'] = !$notification['notifiable'];
         }
@@ -90,7 +94,7 @@ class Message extends IM {
         return $opts;
     }
 
-    public function send($options) {
+    public function send(array $options) {
         $uri = self::BASE_URI;
         $body = $options;
         $response = $this->post($uri, $body);
@@ -98,7 +102,7 @@ class Message extends IM {
     }
 
     public function retract($msgid, $username) {
-        $uri = self::BASE_URI . '/' . $username . '/' . $msgid . 'retract';
+        $uri = self::BASE_URI . '/' . $username . '/' . $msgid . '/retract';
         $response = $this->post($uri);
         return $response;
     }
