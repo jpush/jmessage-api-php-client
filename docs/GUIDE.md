@@ -44,6 +44,7 @@
 * [发送消息](#发送消息)
     * [发送文本消息](#发送文本消息)
     * [发送图片消息](#发送图片消息)
+    * [发送语音消息](#发送语音消息)
     * [发送自定义消息](#发送自定义消息)
 * [SensitiveWord 敏感词](#sensitiveword-敏感词)
     * [获取敏感词列表](#获取敏感词列表)
@@ -858,7 +859,7 @@ $resource = new Resource($client);
 ### 资源上传
 
 ```php
-$resource->upload($type, $path)
+$resource->upload($type, $path);
 ```
 
 **参数：**
@@ -882,7 +883,7 @@ $response = $resource->upload('file', $path);
 ### 资源下载
 
 ```php
-$resource->download($mediaId)
+$resource->download($mediaId);
 ```
 
 **参数：**
@@ -908,7 +909,7 @@ $message = new Message($client);
 ### 发送文本消息
 
 ```php
-$message->sendText($version, array $from, array $target, array $msg);
+$message->sendText($version, array $from, array $target, array $msg, array $notification = [], array $options = []);
 ```
 
 **参数：**
@@ -921,6 +922,10 @@ $message->sendText($version, array $from, array $target, array $msg);
 
 > $msg: 消息体数组
 
+> $notification: 自定义通知数组
+
+> $options: 其他选项数组
+
 **发送者信息数组 $from 说明：**
 
  键 | 是否必须 | 含义
@@ -928,7 +933,6 @@ $message->sendText($version, array $from, array $target, array $msg);
  type | 是 | 发送消息者身份 当前只限 admin 用户，必须先注册 admin 用户
  id | 是 | 发送者的用户名
  name | 否 | 发送者展示名
-
 
 **接受者信息数组 $target 说明：**
 
@@ -945,10 +949,55 @@ $message->sendText($version, array $from, array $target, array $msg);
  text | 是 | 消息内容
  extras | 否 | 接受一个自定义键值对数组
 
+ **自定义通知栏展示数组 $notification 说明**
+
+ 键 | 是否必须 | 含义
+ --- | --- | ---
+ notifiable | 否 | 消息是否在通知栏展示 true 或者 false，默认为 true，表示在通知栏展示
+ title | 否 | 通知的标题
+ alert | 否 | 通知的内容
+
+**其他选项数组 $options 说明**
+
+ 键 | 是否必须 | 含义
+ --- | --- | ---
+ offline | 否 | 消息是否离线存储 true 或者 false，默认为 true，表示需要离线存储
+
 ### 发送图片消息
 
 ```php
-$message->sendImage($version, array $from, array $target, array $msg);
+$message->sendImage($version, array $from, array $target, array $msg, array $notification = [], array $options = []);
+```
+
+**参数：**
+
+> $version: 版本号，目前是 1
+
+> $from: 发送者信息数组（说明同上）
+
+> $target: 接受者信息数组（说明同上）
+
+> $msg: 消息体数组
+
+> $notification: 自定义通知栏展示数组（说明同上）
+
+> $options: 其他选项数组（说明同上）
+
+**消息体数组 $msg 说明：**
+
+ 键 | 是否必须 | 含义
+ --- | --- | ---
+ media_id | 是 | 文件上传之后服务器端所返回的 key，用于之后生成下载的 url
+ media_crc32 | 是 | 文件的 crc32 校验码，用于下载大图的校验
+ width | 是 | 图片原始宽度
+ height | 是 | 图片原始高度
+ format | 是 | 图片格式
+ fsize | 是 | 文件大小（字节数）
+
+ ### 发送语音消息
+
+```php
+$message->sendVoice($version, array $from, array $target, array $msg, array $notification = [], array $options = []);
 ```
 
 **参数：**
@@ -961,22 +1010,24 @@ $message->sendImage($version, array $from, array $target, array $msg);
 
 > $msg: 消息体数组
 
+> $notification: 自定义通知栏展示数组（说明同上）
+
+> $options: 其他选项数组（说明同上）
+
 **消息体数组 $msg 说明：**
 
  键 | 是否必须 | 含义
  --- | --- | ---
- mediaId | 是 | 文件上传之后服务器端所返回的 key，用于之后生成下载的 url
- mediaCrc32 | 是 | 文件的 crc32 校验码，用于下载大图的校验
- width | 是 | 图片原始宽度
- height | 是 | 图片原始高度
- format | 是 | 图片格式
+ media_id | 是 | 文件上传之后服务器端所返回的 key，用于之后生成下载的 url
+ media_crc32 | 是 | 文件的 crc32 校验码
+ duration | 是 |  音频时长
+ hash | 是 | 音频 hash 值
  fsize | 是 | 文件大小（字节数）
- extras | 否 | 接受一个自定义键值对数组
 
 ### 发送自定义消息
 
 ```php
-$message->sendCustom($version, array $from, array $target, array $msg);
+$message->sendCustom($version, array $from, array $target, array $msg, array $notification = [], array $options = []);
 ```
 
 **参数：**
@@ -989,6 +1040,10 @@ $message->sendCustom($version, array $from, array $target, array $msg);
 
 > $msg: 消息体数组，接受一个自定义键值对数组
 
+> $notification: 自定义通知栏展示数组（说明同上）
+
+> $options: 其他选项数组（说明同上）
+
 ## SensitiveWord 敏感词
 
 ```php
@@ -1000,7 +1055,7 @@ $sensitiveWord = new SensitiveWord($client);
 ### 获取敏感词列表
 
 ```php
-$sensitiveWord->listAll($start, $count)
+$sensitiveWord->listAll($start, $count);
 ```
 
 **参数：**
@@ -1019,7 +1074,7 @@ $response = $sensitiveword->listAll(2, 10);
 ### 添加敏感词
 
 ```php
-$sensitiveWord->add(array $words)
+$sensitiveWord->add(array $words);
 ```
 
 **参数：**
@@ -1037,7 +1092,7 @@ $response = $sensitiveword->add($words);
 ### 删除敏感词
 
 ```php
-$sensitiveWord->delete($word)
+$sensitiveWord->delete($word);
 ```
 
 **参数：**
@@ -1055,7 +1110,7 @@ $response = $sensitiveword->delete($words);
 ### 修改敏感词
 
 ```php
-$sensitiveWord->update($old, $new)
+$sensitiveWord->update($old, $new);
 ```
 
 **参数：**
@@ -1074,13 +1129,13 @@ $response = $sensitiveword->update('f0', 'f1');
 ### 获取敏感词功能状态
 
 ```php
-$sensitiveWord->getStatus()
+$sensitiveWord->getStatus();
 ```
 
 ### 更新敏感词功能状态
 
 ```php
-$sensitiveWord->updateStatus(bool $opened)
+$sensitiveWord->updateStatus(bool $opened);
 ```
 
 **参数：**
