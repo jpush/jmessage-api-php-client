@@ -9,7 +9,7 @@ $username = 'user_0';
 
 echo "get users list: \n";
 $response = $user->listAll(0, 100);
-print_r($response);
+print_r($response['body']);
 echo "\n";
 
 echo "get user info: \n";

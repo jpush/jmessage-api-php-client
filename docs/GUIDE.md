@@ -45,7 +45,13 @@
     * [发送文本消息](#发送文本消息)
     * [发送图片消息](#发送图片消息)
     * [发送自定义消息](#发送自定义消息)
-
+* [SensitiveWord 敏感词](#sensitiveword-敏感词)
+    * [获取敏感词列表](#获取敏感词列表)
+    * [添加敏感词](#添加敏感词)
+    * [删除敏感词](#删除敏感词)
+    * [修改敏感词](#修改敏感词)
+    * [获取敏感词功能状态](#获取敏感词功能状态)
+    * [更新敏感词功能状态](#更新敏感词功能状态)
 
 ## JMessage Client
 
@@ -982,3 +988,109 @@ $message->sendCustom($version, array $from, array $target, array $msg);
 > $target: 接受者信息数组（说明同上）
 
 > $msg: 消息体数组，接受一个自定义键值对数组
+
+## SensitiveWord 敏感词
+
+```php
+use JMessage\IM\SensitiveWord;
+
+$sensitiveWord = new SensitiveWord($client);
+```
+
+### 获取敏感词列表
+
+```php
+$sensitiveWord->listAll($start, $count)
+```
+
+**参数：**
+
+> $start：起始记录位置 从 0 开始
+
+> $count：查询条数，最多 2000
+
+**示例：**
+
+```php
+# 获取从编号 2 开始的 10 个记录的敏感词列表
+$response = $sensitiveword->listAll(2, 10);
+```
+
+### 添加敏感词
+
+```php
+$sensitiveWord->add(array $words)
+```
+
+**参数：**
+
+> $words：表示敏感词数组 一个词长度最多为 10，默认最多支持 100 个敏感词
+
+**示例：**
+
+```php
+# 将敏感词 'f0'、'f1' 添加到敏感词列表
+$words = ['f0', 'f1'];
+$response = $sensitiveword->add($words);
+```
+
+### 删除敏感词
+
+```php
+$sensitiveWord->delete($word)
+```
+
+**参数：**
+
+> $word: 表示要被删除的敏感词
+
+**示例：**
+
+```php
+# 将敏感词 'f0' 从敏感词列表删除
+$words = 'f0';
+$response = $sensitiveword->delete($words);
+```
+
+### 修改敏感词
+
+```php
+$sensitiveWord->update($old, $new)
+```
+
+**参数：**
+
+> $old: 表示旧敏感词
+
+> $new: 表示新敏感词
+
+**示例：**
+
+```php
+# 将敏感词 'f0' 修改为　'f1'
+$response = $sensitiveword->update('f0', 'f1');
+```
+
+### 获取敏感词功能状态
+
+```php
+$sensitiveWord->getStatus()
+```
+
+### 更新敏感词功能状态
+
+```php
+$sensitiveWord->updateStatus(bool $opened)
+```
+
+**参数：**
+
+> $opened： 表示敏感词开关状态， true 表示开启过滤， false 表示关闭过滤
+
+**示例：**
+
+```php
+# 关闭敏感词过滤
+$opened = false;
+$response = $sensitiveword->updateStatus($opened);
+```

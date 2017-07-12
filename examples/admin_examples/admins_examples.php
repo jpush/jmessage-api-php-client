@@ -6,5 +6,5 @@ use JMessage\IM\Admin;
 
 $admin = new Admin($jm);
 
-$response = $admin->listAll();
+$response = $admin->listAll(0, 10);
 print_r($response);

@@ -13,7 +13,7 @@ class Admin extends IM {
         return $response;
     }
 
-    public function listAll($start = 0, $count = 10) {
+    public function listAll($start, $count) {
         $uri = self::BASE_URI;
         $query = [
             'start' => $start,
