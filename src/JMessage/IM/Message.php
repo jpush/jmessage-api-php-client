@@ -96,4 +96,10 @@ class Message extends IM {
         $response = $this->post($uri, $body);
         return $response;
     }
+
+    public function retract($msgid, $username) {
+        $uri = self::BASE_URI . '/' . $username . '/' . $msgid . 'retract';
+        $response = $this->post($uri);
+        return $response;
+    }
 }

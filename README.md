@@ -40,7 +40,7 @@ require 'path_to_sdk/autoload.php';
 * [Group 群组](https://github.com/jpush/jmessage-api-php-client/blob/master/docs/GUIDE.md#group-群组)
 * [Friend 好友](https://github.com/jpush/jmessage-api-php-client/blob/master/docs/GUIDE.md#friend-好友)
 * [Resource 媒体资源](https://github.com/jpush/jmessage-api-php-client/blob/master/docs/GUIDE.md#resource-媒体资源)
-* [发送消息](https://github.com/jpush/jmessage-api-php-client/blob/master/docs/GUIDE.md#发送消息)
+* [消息相关](https://github.com/jpush/jmessage-api-php-client/blob/master/docs/GUIDE.md#消息相关)
 * [SensitiveWord 敏感词](https://github.com/jpush/jmessage-api-php-client/blob/master/docs/GUIDE.md#sensitiveword-敏感词)
 * [跨应用](https://github.com/jpush/jmessage-api-php-client/blob/master/docs/CROSS.md#cross-跨应用)
 

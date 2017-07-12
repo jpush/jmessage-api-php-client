@@ -41,11 +41,12 @@
 * [Resource 媒体资源](#resource-媒体资源)
     * [资源上传](#资源上传)
     * [资源下载](#资源下载)
-* [发送消息](#发送消息)
+* [消息相关](#消息相关)
     * [发送文本消息](#发送文本消息)
     * [发送图片消息](#发送图片消息)
     * [发送语音消息](#发送语音消息)
     * [发送自定义消息](#发送自定义消息)
+    * [消息撤回](#消息撤回)
 * [SensitiveWord 敏感词](#sensitiveword-敏感词)
     * [获取敏感词列表](#获取敏感词列表)
     * [添加敏感词](#添加敏感词)
@@ -1043,6 +1044,18 @@ $message->sendCustom($version, array $from, array $target, array $msg, array $no
 > $notification: 自定义通知栏展示数组（说明同上）
 
 > $options: 其他选项数组（说明同上）
+
+### 消息撤回
+
+```php
+$message->retract($msgid, $username);
+```
+
+**参数：**
+
+> $msgid: 消息的 msgid
+
+> $username: 发送此消息的用户名
 
 ## SensitiveWord 敏感词
 
