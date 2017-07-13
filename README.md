@@ -14,7 +14,7 @@
 
 ```json
 "require": {
-    "jiguang/jmessage": "1.0.*"
+    "jiguang/jmessage": "~1.1"
 }
 ```
 
