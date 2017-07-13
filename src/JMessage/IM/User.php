@@ -107,4 +107,13 @@ class User extends IM {
         $response = $this->post($uri, $body);
         return $response;
     }
+
+    # forbidden
+    public function forbidden($username, bool $enabled) {
+        $uri = self::BASE_URI . $username . '/forbidden';
+        $query = [ 'disable' => $enabled ];
+
+        $response = $this->get($uri, $query);
+        return $response;
+    }
 }

@@ -10,6 +10,7 @@
     * [查询用户在线状态](#查询用户在线状态)
     * [修改密码](#修改密码)
     * [删除用户](#删除用户)
+    * [禁用用户](#禁用用户)
     * [获取用户的群组列表](#获取用户的群组列表)
     * [添加单聊免打扰](#添加单聊免打扰)
     * [移除单聊免打扰](#移除单聊免打扰)
@@ -244,6 +245,27 @@ $user->delete($username);
 
 $username = 'jiguang';
 $response = $user->delete($username);
+```
+
+### 禁用用户
+
+```php
+$user->forbidden($username，bool $enabled);
+```
+
+**参数：**
+
+> $username: 表示想要禁用的用户的用户名
+
+> $enabled: true 表示禁用用户，false 表示取消禁用用户，即激活用户
+
+**示例：**
+
+```php
+# 禁用用户名为 'jiguang' 的用户
+
+$username = 'jiguang';
+$response = $user->forbidden($username, true);
 ```
 
 ### 获取用户的群组列表
