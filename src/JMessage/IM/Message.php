@@ -33,6 +33,10 @@ class Message extends IM {
             ]
         ], $this->buildMessage($version, $from, $target, $notification, $options));
 
+        if (isset($msg['hash'])) {
+            $opts['msg_body']['hash'] = $msg['hash'];
+        }
+
         return $this->send($opts);
     }
 
@@ -47,6 +51,10 @@ class Message extends IM {
                 'fsize'       => $msg['fsize']
             ]
         ], $this->buildMessage($version, $from, $target, $notification, $options));
+
+        if (isset($msg['hash'])) {
+            $opts['msg_body']['hash'] = $msg['hash'];
+        }
 
         return $this->send($opts);
     }

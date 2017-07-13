@@ -885,7 +885,7 @@ $resource->upload($type, $path);
 
 **参数：**
 
-> $type: 表示要上传的资源类型，仅支持 'image' 和 'file' 两种资源
+> $type: 表示要上传的资源类型，支持 'image' 、'voice' 和 'file' 三种资源类型
 
 > $path: 表示要上传的资源的全路径
 
@@ -998,13 +998,15 @@ $message->sendImage($version, array $from, array $target, array $msg, array $not
 
 > $target: 接受者信息数组（说明同上）
 
-> $msg: 消息体数组
+> $msg: 消息体数组，格式是上传图片资源的返回值
 
 > $notification: 自定义通知栏展示数组（说明同上）
 
 > $options: 其他选项数组（说明同上）
 
 **消息体数组 $msg 说明：**
+
+> 为File Upload api返回的json
 
  键 | 是否必须 | 含义
  --- | --- | ---
@@ -1013,6 +1015,7 @@ $message->sendImage($version, array $from, array $target, array $msg, array $not
  width | 是 | 图片原始宽度
  height | 是 | 图片原始高度
  format | 是 | 图片格式
+ hash | 否 | 图片 hash 值
  fsize | 是 | 文件大小（字节数）
 
  ### 发送语音消息
@@ -1029,7 +1032,7 @@ $message->sendVoice($version, array $from, array $target, array $msg, array $not
 
 > $target: 接受者信息数组（说明同上）
 
-> $msg: 消息体数组
+> $msg: 消息体数组，格式是上传语音资源的返回值
 
 > $notification: 自定义通知栏展示数组（说明同上）
 
@@ -1042,7 +1045,7 @@ $message->sendVoice($version, array $from, array $target, array $msg, array $not
  media_id | 是 | 文件上传之后服务器端所返回的 key，用于之后生成下载的 url
  media_crc32 | 是 | 文件的 crc32 校验码
  duration | 是 |  音频时长
- hash | 是 | 音频 hash 值
+ hash | 否 | 音频 hash 值
  fsize | 是 | 文件大小（字节数）
 
 ### 发送自定义消息
