@@ -18,6 +18,7 @@
     * [移除群聊免打扰](#移除群聊免打扰)
     * [开启全局免打扰](#开启全局免打扰)
     * [关闭全局免打扰](#关闭全局免打扰)
+    * [群消息屏蔽](#群消息屏蔽)
 * [Admin 管理员](#admin-管理员)
     * [管理员注册](#管理员注册)
     * [获取应用管理员列表](#获取应用管理员列表)
@@ -447,6 +448,49 @@ $options = [
 ];
 
 $response = $user->nodisturb($touser, $options);
+```
+
+### 群消息屏蔽
+
+#### 添加
+
+```php
+$user->addGroupsShield($username, array $gids);
+```
+**参数：**
+
+> $username: 表示要设置屏蔽群消息的用户
+
+> $gids: 表示要添加群消息屏蔽的 gid 数组
+
+**示例：**
+
+```php
+# 用户 'jiguang' 添加 gid 为 $gid0 和 $gid1 的群组的消息屏蔽
+$username = 'jiguang';
+$options = [$gid0, $gid1];
+$response = $user->addGroupsShield($username, $gids);
+```
+
+#### 移除
+
+```php
+$user->removeGroupsShield($username, array $gids);
+```
+
+**参数：**
+
+> $username: 表示要设置屏蔽群消息的用户
+
+> $gids: 表示要移除群消息屏蔽的 gid 数组
+
+**示例：**
+
+```php
+# 用户 'jiguang' 移除 gid 为 $gid2 和 $gid3 的群组的消息屏蔽
+$username = 'jiguang';
+$options = [$gid2, $gid3];
+$response = $user->removeGroupsShield($username, $gids);
 ```
 
 ## Admin 管理员
@@ -941,7 +985,7 @@ $mediaId = 'xxxx';
 $response = $resource->download($mediaId);
 ```
 
-## 发送消息
+## 消息相关
 
 ```php
 use JMessage\IM\Message;

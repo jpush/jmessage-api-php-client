@@ -116,4 +116,18 @@ class User extends IM {
         $response = $this->get($uri, $query);
         return $response;
     }
+
+    # groupsShield
+    public function addGroupsShield($username, array $gids) {
+        return $this->updateGroupsShield($username, [ 'add' => $gids ]);
+    }
+    public function removeGroupsShield($username, array $gids) {
+        return $this->updateGroupsShield($username, [ 'remove' => $gids ]);
+    }
+    private function updateGroupsShield($username, array $options) {
+        $uri = self::BASE_URI . $username . '/groupsShield';
+        $body = $options;
+        $response = $this->post($uri, $body);
+        return $response;
+    }
 }
