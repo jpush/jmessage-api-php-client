@@ -34,6 +34,7 @@ require 'path_to_sdk/autoload.php';
 ## Usage
 
 * [JMessage Client](https://github.com/jpush/jmessage-api-php-client/blob/master/docs/GUIDE.md#jmessage-client)
+* [证书问题](https://github.com/jpush/jmessage-api-php-client/blob/master/docs/GUIDE.md#证书问题)
 * [User 用户](https://github.com/jpush/jmessage-api-php-client/blob/master/docs/GUIDE.md#user-用户)
 * [Admin 管理员](https://github.com/jpush/jmessage-api-php-client/blob/master/docs/GUIDE.md#admin-管理员)
 * [Blacklist 黑名单](https://github.com/jpush/jmessage-api-php-client/blob/master/docs/GUIDE.md#blacklist-黑名单)
@@ -50,7 +51,7 @@ require 'path_to_sdk/autoload.php';
 
 在项目的 [examples](https://github.com/jpush/jmessage-api-php-client/tree/master/examples) 文件夹中有简单的使用示例代码, 开发者可以参考其中的样例快速了解该库的使用方法。
 
-**注：所下载的样例代码不可马上使用，需要在 `examples/config.php` 文件中填入相关的必要参数，或者设置相关环境变量，不进行这个操作则示例运行会失败。**另外为保护开发者隐私 `examples/config.php` 文件不在版本控制中，需要使用如下命令手动复制：
+**注：所下载的样例代码不可马上使用，需要在** `examples/config.php` **文件中填入相关的必要参数，或者设置相关环境变量，不进行这个操作则示例运行会失败。** 另外为保护开发者隐私 `examples/config.php` 文件不在版本控制中，需要使用如下命令手动复制：
 
 ```php
 $ cp examples/config.php.example examples/config.php

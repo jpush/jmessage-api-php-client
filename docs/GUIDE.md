@@ -57,6 +57,7 @@
     * [修改敏感词](#修改敏感词)
     * [获取敏感词功能状态](#获取敏感词功能状态)
     * [更新敏感词功能状态](#更新敏感词功能状态)
+* [证书问题](#证书问题)
 
 ## JMessage Client
 
@@ -1251,3 +1252,19 @@ $sensitiveWord->updateStatus(bool $opened);
 $opened = false;
 $response = $sensitiveword->updateStatus($opened);
 ```
+
+## 证书问题
+
+> 即常见的 cURL 60 错误，`SSL certificate problem: unable to get local issuer certificate` 一般建议自行安装安全证书配置机器进行解决，下面的方式**不是**推荐方式。
+
+```php
+use JMessage\JMessage;
+
+$appKey = 'xxxx';
+$masterSecret = 'xxxx';
+
+// 禁用 SSL 证书的验证
+$client = new JMessage($appKey, $masterSecret, [ 'disable_ssl' => true ]);
+```
+
+> **希望开发者在了解相关风险的前提下如此处理 SSL 证书问题。**

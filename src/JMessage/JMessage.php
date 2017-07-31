@@ -16,4 +16,13 @@ class JMessage {
     public function getAuth() {
         return $this->appKey . ':' . $this->masterSecret;
     }
+
+    public function disableSsl() {
+        if (isset($this->options['disable_ssl'])
+            && (bool) $this->options['disable_ssl']) {
+            return true;
+        }
+        return false;
+    }
+
 }
