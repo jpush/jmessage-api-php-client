@@ -66,7 +66,7 @@ class Http {
             CURLOPT_URL => $uri,
             CURLOPT_CUSTOMREQUEST => ('UPLOAD' == $method) ? 'POST' : $method
         );
-        if ($this->client->disableSsl()) {
+        if ($client->disableSsl()) {
             $options[CURLOPT_SSL_VERIFYPEER] = false;
             $options[CURLOPT_SSL_VERIFYHOST] = 0;
         }
