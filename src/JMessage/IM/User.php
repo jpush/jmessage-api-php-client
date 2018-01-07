@@ -132,7 +132,7 @@ class User extends IM {
     }
 
 
-    public function chatroomList($username) {
+    public function chatrooms($username) {
         $uri = self::BASE_URI . $username . '/chatroom';
         $response = $this->get($uri);
         return $response;

@@ -43,6 +43,7 @@ require 'path_to_sdk/autoload.php';
 * [Resource 媒体资源](https://github.com/jpush/jmessage-api-php-client/blob/master/docs/GUIDE.md#resource-媒体资源)
 * [消息相关](https://github.com/jpush/jmessage-api-php-client/blob/master/docs/GUIDE.md#消息相关)
 * [SensitiveWord 敏感词](https://github.com/jpush/jmessage-api-php-client/blob/master/docs/GUIDE.md#sensitiveword-敏感词)
+* [ChatRoom 聊天室](https://github.com/jpush/jmessage-api-php-client/blob/master/docs/GUIDE.md#chatroom-聊天室)
 * [跨应用](https://github.com/jpush/jmessage-api-php-client/blob/master/docs/CROSS.md#cross-跨应用)
 * [Report](https://github.com/jpush/jmessage-api-php-client/blob/master/docs/REPORT.md)
 

@@ -12,6 +12,7 @@
     * [删除用户](#删除用户)
     * [禁用用户](#禁用用户)
     * [获取用户的群组列表](#获取用户的群组列表)
+    * [获取用户聊天室列表](#获取用户聊天室列表)
     * [添加单聊免打扰](#添加单聊免打扰)
     * [移除单聊免打扰](#移除单聊免打扰)
     * [添加群聊免打扰](#添加群聊免打扰)
@@ -57,6 +58,17 @@
     * [修改敏感词](#修改敏感词)
     * [获取敏感词功能状态](#获取敏感词功能状态)
     * [更新敏感词功能状态](#更新敏感词功能状态)
+* [ChatRoom 聊天室](#chatroom-聊天室)
+    * [获取当前应用的聊天室列表](#获取当前应用的聊天室列表)
+    * [创建聊天室](#创建聊天室)
+    * [获取聊天室详情](#获取聊天室详情)
+    * [更新聊天室信息](#更新聊天室信息)
+    * [删除聊天室](#删除聊天室)
+    * [修改用户禁言状态](#修改用户禁言状态)
+    * [获取聊天室成员列表](#获取聊天室成员列表)
+    * [添加聊天室成员](#添加聊天室成员)
+    * [移除聊天室成员](#移除聊天室成员)
+
 * [证书问题](#证书问题)
 
 ## JMessage Client
@@ -287,6 +299,25 @@ $user->groups($username);
 
 $username = 'jiguang';
 $response = $user->groups($username);
+```
+
+### 获取用户聊天室列表
+
+```php
+$user->chatrooms($username);
+```
+
+**参数：**
+
+> $username: 表示想要获取其聊天室列表的用户
+
+**示例：**
+
+```php
+# 获取用户 'jiguang' 的聊天室列表
+
+$username = 'jiguang';
+$response = $user->chatrooms($username);
 ```
 
 ### 添加单聊免打扰
@@ -1252,6 +1283,122 @@ $sensitiveWord->updateStatus(bool $opened);
 $opened = false;
 $response = $sensitiveword->updateStatus($opened);
 ```
+
+## ChatRoom 聊天室
+
+```php
+use JMessage\IM\ChatRoom;
+
+$room = new ChatRoom($client);
+```
+
+### 获取当前应用的聊天室列表
+
+```php
+$room->listAll($count, $start = 0);
+```
+
+**参数：**
+
+> $start: 开始的记录数
+
+> $count: 本次读取的记录数量
+
+### 创建聊天室
+
+```php
+$room->create($name, $owner, array $members = [], $description = null)
+```
+
+**参数：**
+
+> $name: 表示聊天室的名字
+
+> $owner: 聊天室拥有者
+
+> $members: 表示聊天室成员的用户名数组
+
+> $description: 表示聊天室描述
+
+### 获取聊天室详情
+
+```php
+$room->show($roomId);
+# OR
+$room->showBatch(array $roomIds);
+```
+
+**参数：**
+
+> $roomId:  聊天室 ID
+
+> $roomIds:  聊天室 ID 数组
+
+### 更新聊天室信息
+
+```php
+$room->update($roomId, array $options)
+```
+
+**参数：**
+
+> $roomId: 聊天室 ID
+
+> $options: 表示更新聊天室的选项数组，支持 `name`（新的名称）、`description`（新的描述）和`owner_username`（聊天室拥有者）三个参数
+
+### 删除聊天室
+
+```php
+$room->delete($roomId);
+```
+
+**参数：**
+
+> $roomId: 聊天室 ID
+
+### 修改用户禁言状态
+
+```php
+$room->forbiddenUser($roomId, $user, bool $enabled)
+```
+
+**参数：**
+
+> $roomId: 聊天室 ID
+
+> $user: 表示想要禁言的用户的用户名
+
+> $enabled: true 表示禁言，false 表示取消禁言
+
+### 获取聊天室成员列表
+
+```php
+$room->members($roomId, $count, $start = 0));
+```
+
+### 添加聊天室成员
+
+```php
+$room->addMembers($roomId, array $usernames);
+```
+
+**参数：**
+
+> $roomId: 聊天室 ID
+
+> $usernames: 表示要添加到聊天室的用户数组
+
+### 移除聊天室成员
+
+```php
+$room->removeMembers($roomId, array $usernames);
+```
+
+**参数：**
+
+> $roomId: 聊天室 ID
+
+> $usernames: 表示要从聊天室中移除的用户数组
 
 ## 证书问题
 
