@@ -8,7 +8,7 @@ class Member extends IM {
 
     public function add($gid, $appKey, array $usernames) {
         $body = [[
-            'appKey' => $appKey,
+            'appkey' => $appKey,
             'add' => $usernames
         ]];
         return $this->update($gid, $body);
@@ -16,7 +16,7 @@ class Member extends IM {
 
     public function remove($gid, $appKey, array $usernames) {
         $body = [[
-            'appKey' => $appKey,
+            'appkey' => $appKey,
             'remove' => $usernames
         ]];
         return $this->update($gid, $body);

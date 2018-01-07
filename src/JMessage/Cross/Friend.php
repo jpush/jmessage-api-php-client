@@ -9,7 +9,7 @@ class Friend extends IM {
     public function add($user, $appKey, array $friendnames) {
         $uri = self::BASE_URI . $user . '/friends';
         $body = [
-            'appKey' => $appKey,
+            'appkey' => $appKey,
             'users' => $friendnames
         ];
         $response = $this->post($uri, $body);
@@ -19,7 +19,7 @@ class Friend extends IM {
     public function remove($user, $appKey, array $friendnames) {
         $uri = self::BASE_URI . $user . '/friends';
         $body = [
-            'appKey' => $appKey,
+            'appkey' => $appKey,
             'users' => $friendnames
         ];
         $response = $this->del($uri, $body);
@@ -28,7 +28,7 @@ class Friend extends IM {
 
     public function updateNotename($user, $appKey, $friendname, array $options) {
         $body = [
-            'appKey' => $appKey,
+            'appkey' => $appKey,
             'username' => $friendname
         ];
 

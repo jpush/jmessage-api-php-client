@@ -8,7 +8,7 @@ class Blacklist extends IM {
 
     public function add($user, $appKey, array $usernames) {
         $body = [[
-            'appKey' => $appKey,
+            'appkey' => $appKey,
             'usernames' => $usernames
         ]];
         return $this->batchAdd($user, $body);
@@ -23,7 +23,7 @@ class Blacklist extends IM {
 
     public function remove($user, $appKey, array $usernames) {
         $body = [[
-            'appKey' => $appKey,
+            'appkey' => $appKey,
             'usernames' => $usernames
         ]];
         return $this->batchRemove($user, $body);

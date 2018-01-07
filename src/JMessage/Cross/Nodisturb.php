@@ -7,7 +7,7 @@ class Nodisturb extends IM {
     const BASE_URI = 'https://api.im.jpush.cn/v1/cross/users/';
 
     public function single($user, $appKey, array $options) {
-        $body = [ 'appKey' => $appKey ];
+        $body = [ 'appkey' => $appKey ];
         if (!isset($options['add'])) {
             $body['single']['add'] = $options['add'];
         }
@@ -19,7 +19,7 @@ class Nodisturb extends IM {
     }
 
     public function group($user, $appKey, array $options) {
-        $body = [ 'appKey' => $appKey ];
+        $body = [ 'appkey' => $appKey ];
         if (!isset($options['add'])) {
             $body['group']['add'] = $options['add'];
         }
