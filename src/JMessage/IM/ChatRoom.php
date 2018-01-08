@@ -37,7 +37,7 @@ class ChatRoom extends IM {
     }
 
     public function showBatch(array $roomIds) {
-        $uri = self::BASE_URI . batch;
+        $uri = self::BASE_URI . 'batch';
         $body = $roomId;
         $response = $this->post($uri, $body);
         return $response;
