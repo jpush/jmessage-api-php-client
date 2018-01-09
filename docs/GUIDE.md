@@ -1373,7 +1373,7 @@ $room->forbiddenUser($roomId, $user, bool $enabled)
 ### 获取聊天室成员列表
 
 ```php
-$room->members($roomId, $count, $start = 0));
+$room->members($roomId, $count, $start = 0);
 ```
 
 ### 添加聊天室成员

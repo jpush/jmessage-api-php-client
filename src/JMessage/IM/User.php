@@ -110,7 +110,7 @@ class User extends IM {
 
     # forbidden
     public function forbidden($username, bool $enabled) {
-        $uri = self::BASE_URI . $username . '/forbidden?disable' . $enabled;
+        $uri = self::BASE_URI . $username . '/forbidden?disable=' . $enabled;
         $response = $this->put($uri);
         return $response;
     }
