@@ -38,7 +38,7 @@ class ChatRoom extends IM {
 
     public function showBatch(array $roomIds) {
         $uri = self::BASE_URI . 'batch';
-        $body = $roomId;
+        $body = $roomIds;
         $response = $this->post($uri, $body);
         return $response;
     }
@@ -63,7 +63,7 @@ class ChatRoom extends IM {
         return $response;
     }
 
-    public function memebers($roomId, $count, $start = 0) {
+    public function members($roomId, $count, $start = 0) {
         $uri = self::BASE_URI . $roomId. '/members';
         $query = [
             'start' => $start,
@@ -77,7 +77,7 @@ class ChatRoom extends IM {
         $uri = self::BASE_URI . $roomId . '/members';
         $body = $members;
         $response = $this->put($uri, $body);
-
+        return $response;
     }
     public function removeMembers($roomId, array $members) {
         $uri = self::BASE_URI . $roomId . '/members';
