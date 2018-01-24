@@ -77,11 +77,10 @@ class Http {
                     $options[CURLOPT_SAFE_UPLOAD] = true;
                     $options[CURLOPT_POSTFIELDS] = ['filename' => new \CURLFile($body['path'])];
                 } else {
-                # TODO
                     if (defined('CURLOPT_SAFE_UPLOAD')) {
                         $options[CURLOPT_SAFE_UPLOAD] = false;
-                        $options[CURLOPT_POSTFIELDS] = '';
                     }
+                    $options[CURLOPT_POSTFIELDS] = ['filename' => '@' . $body['path']];
                 }
             } else {
                 $options[CURLOPT_POSTFIELDS] = json_encode($body);
