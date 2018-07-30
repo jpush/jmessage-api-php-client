@@ -69,4 +69,26 @@ class Group extends IM {
         $response = $this->get($uri);
         return $response;
     }
+
+    public function addSilence($gid, $usernames) {
+        $uri = self::BASE_URI . 'messages/' . $gid . '/silence?status=true';
+        $response = $this->put($uri, $usernames);
+        return $response;
+    }
+
+    public function removeSilence($gid, $usernames) {
+        $uri = self::BASE_URI . 'messages/' . $gid . '/silence?status=false';
+        $response = $this->put($uri, $usernames);
+        return $response;
+    }
+
+    public function updateOwner($gid, $username, $appkey = null) {
+        $uri = self::BASE_URI . 'owner/' . $gid;
+        $body = ['username' => $username];
+        if(!is_null($appkey)) {
+            $body['appkey'] = $appkey;
+        }
+        $response = $this->put($uri, $body);
+        return $response;
+    }
 }

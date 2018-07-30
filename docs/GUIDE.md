@@ -37,6 +37,8 @@
         * [移除群组成员](#移除群组成员)
     * [获取群组成员列表](#获取群组成员列表)
     * [获取当前应用的群组列表](#获取当前应用的群组列表)
+    * [群消息屏蔽](#群消息屏蔽)
+    * [移交群主](#移交群主)
 * [Friend 好友](#friend-好友)
     * [获取好友列表](#获取好友列表)
     * [添加好友](#添加好友)
@@ -848,15 +850,70 @@ $group->listAll($count, $start = 0);
 
 **参数：**
 
-$start: 开始的记录数
+> $start: 开始的记录数
 
-$count: 本次读取的记录数量，最大值为500
+> $count: 本次读取的记录数量，最大值为500
 
 **示例：**
 
 ```php
 # 获取从编号 2 开始的 100 个记录的群组列表
 $response = $group->listAll(100, 2);
+```
+
+### 群成员禁言
+
+```php
+$group->addSilence($gid, $usernames);
+```
+
+**参数：**
+
+> $gid: 群组 ID, 由创建群组时分配
+
+> $usernames: 表示要禁言的用户数组
+
+**示例：**
+
+```php
+# 表示在群组 12345 中将用户名为 'username0', 'username1' 的用户禁言
+$response = $group->addSilence(12345, ['username0', 'username1']);
+```
+
+```php
+$group->removeSilence($gid, $usernames);
+```
+
+**参数：**
+
+> $gid: 群组 ID, 由创建群组时分配
+
+> $usernames: 表示要取消禁言的用户数组
+
+**示例：**
+
+```php
+# 表示在群组 12345 中将用户名为 'username0', 'username1' 的用户取消禁言
+$response = $group->removeSilence(12345, ['username0', 'username1']);
+```
+
+### 移交群主
+
+```php
+$group->updateOwner($gid, $username)
+```
+
+**参数：**
+
+> $gid: 群组 ID, 由创建群组时分配
+
+> $usernames: 表示要设置为群主的用户名
+
+**示例：**
+
+```php
+# 表示将群组 12345 的群主设置为用户名为 'username0' 的用户
+$response = $group->updateOwner(12345, 'username0');
 ```
 
 ## Friend 好友
