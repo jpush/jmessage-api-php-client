@@ -1027,7 +1027,7 @@ $response = $friend->updateNotename($user, $options);
 ## Resource 媒体资源
 
 ```php
-use JMessage\IM\Resourse;
+use JMessage\IM\Resource;
 
 $resource = new Resource($client);
 ```
