@@ -654,7 +654,7 @@ $group = new Group($client);
 ### 创建群组
 
 ```php
-$group->create($owner, $name, $desc, array $members = [])
+$group->create($owner, $name, $desc, array $members, $avatar, $flag)
 ```
 
 **参数：**
@@ -666,6 +666,12 @@ $group->create($owner, $name, $desc, array $members = [])
 > $desc: 表示群组描述
 
 > $members: 表示群组成员的用户名数组
+
+> $avatar: （选填）群组头像，上传接口所获得的 media_id
+
+> $flag: （选填） 类型
+>  * 1 - 私有群（默认）
+>  * 2 - 公开群
 
 **示例：**
 
@@ -702,7 +708,7 @@ $response = $group->show($gid);
 ### 更新群组信息（群名 or 群描述）
 
 ```php
-$group->update($gid, $name, $desc)
+$group->update($gid, $name, $desc, $avatar)
 ```
 
 **参数：**
@@ -712,6 +718,8 @@ $group->update($gid, $name, $desc)
 > $name: 新的群名
 
 > $desc: 新的群描述
+
+> avatar: 群组头像 media_id
 
 **示例：**
 
@@ -1114,7 +1122,7 @@ $message->sendText($version, array $from, array $target, array $msg, array $noti
 
  键 | 是否必须 | 含义
  --- | --- | ---
- type | 是 | 发送目标类型， 'single' - 个人，'group' - 群组
+ type | 是 | 发送目标类型， 'single' - 个人，'group' - 群组, 'chatroom' - 聊天室
  id | 是 | 目标 id， 'single' 填 username 'group' 填 Group Id
  name | 否 | 接受者展示名
 

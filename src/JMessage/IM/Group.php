@@ -6,14 +6,19 @@ class Group extends IM {
 
     const BASE_URI = 'https://api.im.jpush.cn/v1/groups/';
 
-    public function create($owner, $name, $desc, array $members = []) {
+    public function create($owner, $name, $desc = null,
+        array $members = [], $avatar = null, $flag = null) {
         $uri = self::BASE_URI;
         $body = [
             'owner_username' => $owner,
             'name' => $name,
             'desc' => $desc,
-            'members_username' => $members
+            'avatar' => $avatar,
+            'flag' => $flag
         ];
+        if (!is_null($members) || !empty($members)) {
+            $body['members_username'] = $members;
+        }
         $response = $this->post($uri, $body);
         return $response;
     }
@@ -24,12 +29,13 @@ class Group extends IM {
         return $response;
     }
 
-    public function update($gid, $name = null, $desc = null) {
+    public function update($gid, $name = null, $desc = null, $avatar = null) {
         $uri = self::BASE_URI . $gid;
 
         $body = [];
         if (!is_null($name)) { $body['name'] = $name; }
         if (!is_null($desc)) { $body['desc'] = $desc; }
+        if (!is_null($avatar)) { $body['avatar'] = $avatar; }
 
         $response = $this->put($uri, $body);
         return $response;
