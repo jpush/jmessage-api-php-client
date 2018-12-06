@@ -1064,6 +1064,8 @@ $response = $resource->upload('image', $path);
 $response = $resource->upload('file', $path);
 ```
 
+> 注：文件大小限制 8m，暂时只支持图片格式 jpg、bmp、gif、png 等
+
 ### 资源下载
 
 ```php
