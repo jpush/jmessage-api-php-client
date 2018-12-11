@@ -56,8 +56,8 @@ class ChatRoom extends IM {
         return $response;
     }
 
-    public function forbiddenUser($roomId, $user, bool $enabled) {
-        $status = $enabled ? 1 : 0;
+    public function forbiddenUser($roomId, $user, $enabled) {
+        $status = (bool)$enabled ? 1 : 0;
         $uri = self::BASE_URI . $roomId . '/forbidden/' . $user . '?status=' . $status;
         $response = $this->put($uri);
         return $response;

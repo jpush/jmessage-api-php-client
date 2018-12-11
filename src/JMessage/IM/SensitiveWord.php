@@ -48,7 +48,7 @@ class SensitiveWord extends IM {
         return $response;
     }
 
-    public function updateStatus(bool $opened) {
+    public function updateStatus($opened) {
         $uri = self::BASE_URI . '/status?status=' . (int)$opened;
 
         $response = $this->put($uri);

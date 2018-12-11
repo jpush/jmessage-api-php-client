@@ -45,7 +45,7 @@ class Friend extends IM {
 
     public function batchUpdateNotename($user, array $options) {
         $uri = self::BASE_URI . $user . '/friends';
-        $response = $this->put($uri, $body);
+        $response = $this->put($uri, $options);
         return $response;
     }
 }

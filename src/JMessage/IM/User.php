@@ -108,8 +108,14 @@ class User extends IM {
         return $response;
     }
 
-    # forbidden
-    public function forbidden($username, bool $enabled) {
+    /**
+     * Forbidden
+     *
+     * @param string $username
+     * @param bool $enabled
+     * @return mixed
+     */
+    public function forbidden($username, $enabled) {
         if ($enabled) {
             $bool = 'true';
         } else {
